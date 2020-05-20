@@ -1,6 +1,21 @@
 #include "catch.hpp"
+#include <string>
+#include "Pencil.h"
 
-TEST_CASE("assert true")
+using namespace PencilDurability;
+
+SCENARIO("pencils can write text to paper")
 {
-    REQUIRE(true);
+    GIVEN("a pencil and paper") {
+        Pencil pencil;
+        std::string paper;
+
+        WHEN("the pencil writes text") {
+            pencil.writeTextToPaper("She sells sea shells", paper);
+
+            THEN("the paper reflects the text that was written") {
+                CHECK(paper == "She sells sea shells");
+            }
+        }
+    }
 }
