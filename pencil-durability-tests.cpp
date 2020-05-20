@@ -103,4 +103,17 @@ SCENARIO("pencil points degrade with use")
             }
         }
     }
+
+    GIVEN("a pencil point with durability remaining") {
+        Pencil pencil{4};
+        std::string paper;
+
+        WHEN("the pencil writes a lowercase letter") {
+            pencil.writeTextToPaper("texts", paper);
+
+            THEN("the point durability degrades by one") {
+                CHECK(paper == "text ");
+            }
+        }
+    }
 }

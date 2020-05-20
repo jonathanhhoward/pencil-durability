@@ -8,10 +8,18 @@ namespace PencilDurability {
 
     void Pencil::writeTextToPaper(std::string text, std::string& paper)
     {
-        if (!pointDurability)
-            paper += "    ";
-        else
-            paper += text;
+        std::string letters;
+
+        for(char c : text) {
+            if(pointDurability) {
+                letters += c;
+                --pointDurability;
+            }
+            else
+                letters += ' ';
+        }
+
+        paper += letters;
     }
 
     void Pencil::eraseTextFromPaper(std::string text, std::string& paper)
