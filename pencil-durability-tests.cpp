@@ -49,5 +49,13 @@ SCENARIO("pencils can erase text from paper")
                 }
             }
         }
+
+        WHEN("the text is not found") {
+            pencil.eraseTextFromPaper("duck", paper);
+
+            THEN("the paper is not changed") {
+                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could chuck wood?");
+            }
+        }
     }
 }
