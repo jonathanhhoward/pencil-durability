@@ -16,6 +16,14 @@ SCENARIO("pencils can write text to paper")
             THEN("the paper reflects the text that was written") {
                 CHECK(paper == "She sells sea shells");
             }
+
+            WHEN("additional text is written") {
+                pencil.writeTextToPaper(" down by the sea shore", paper);
+
+                THEN("the text is appended to existing text on the paper") {
+                    CHECK(paper == "She sells sea shells down by the sea shore");
+                }
+            }
         }
     }
 }
