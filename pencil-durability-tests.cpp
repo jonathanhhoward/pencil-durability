@@ -88,3 +88,19 @@ SCENARIO("pencils can insert text to paper")
         }
     }
 }
+
+SCENARIO("pencil points degrade with use")
+{
+    GIVEN("a pencil point with no durability remaining") {
+        Pencil pencil{ 0 };
+        std::string paper;
+
+        WHEN("the pencil writes with a dull point") {
+            pencil.writeTextToPaper("text", paper);
+
+            THEN("it only writes spaces") {
+                CHECK(paper == "    ");
+            }
+        }
+    }
+}

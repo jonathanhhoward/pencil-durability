@@ -2,13 +2,16 @@
 
 namespace PencilDurability {
     Pencil::Pencil(int initPointDurability)
-            :pointDurability{ 100 }
+            :pointDurability{ initPointDurability }
     {
     }
 
     void Pencil::writeTextToPaper(std::string text, std::string& paper)
     {
-        paper += text;
+        if (!pointDurability)
+            paper += "    ";
+        else
+            paper += text;
     }
 
     void Pencil::eraseTextFromPaper(std::string text, std::string& paper)
