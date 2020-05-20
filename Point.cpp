@@ -5,4 +5,9 @@ namespace PencilDurability {
             :durability{ initDurability }
     {
     }
+
+    bool Point::isRemaining() const
+    {
+        return durability != 0;
+    }
 }

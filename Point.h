@@ -6,6 +6,8 @@ namespace PencilDurability {
     public:
         explicit Point(int initDurability);
 
+        bool isRemaining() const;
+
         int durability;
     };
 }

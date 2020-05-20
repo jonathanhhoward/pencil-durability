@@ -11,7 +11,7 @@ namespace PencilDurability {
         std::string letters;
 
         for (char c : text) {
-            if (point.durability) {
+            if (point.isRemaining()) {
                 letters += c;
                 --point.durability;
             }
