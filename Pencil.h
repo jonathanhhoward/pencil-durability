@@ -6,6 +6,7 @@ namespace PencilDurability {
     class Pencil {
     public:
         void writeTextToPaper(std::string text, std::string& paper);
+        void eraseTextFromPaper(std::string text, std::string& paper);
     };
 }
 
