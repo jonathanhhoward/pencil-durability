@@ -2,7 +2,7 @@
 
 namespace PencilDurability {
     Pencil::Pencil(int initPointDurability)
-            :pointDurability{ initPointDurability }
+            :point{ initPointDurability }
     {
     }
 
@@ -10,10 +10,10 @@ namespace PencilDurability {
     {
         std::string letters;
 
-        for(char c : text) {
-            if(pointDurability) {
+        for (char c : text) {
+            if (point.durability) {
                 letters += c;
-                --pointDurability;
+                --point.durability;
             }
             else
                 letters += ' ';
