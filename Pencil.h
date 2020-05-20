@@ -7,6 +7,7 @@ namespace PencilDurability {
     public:
         void writeTextToPaper(std::string text, std::string& paper);
         void eraseTextFromPaper(std::string text, std::string& paper);
+        void insertTextToPaper(std::string text, std::string& paper);
     };
 }
 

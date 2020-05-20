@@ -59,3 +59,19 @@ SCENARIO("pencils can erase text from paper")
         }
     }
 }
+
+SCENARIO("pencils can insert text to paper")
+{
+    GIVEN("a pencil and paper with erasures") {
+        Pencil pencil;
+        std::string paper{ "An       a day keeps the doctor away" };
+
+        WHEN("the pencil writes to empty space") {
+            pencil.insertTextToPaper("onion", paper);
+
+            THEN("the empty space is filled in with the new text") {
+                CHECK(paper == "An onion a day keeps the doctor away");
+            }
+        }
+    }
+}

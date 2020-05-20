@@ -14,4 +14,9 @@ namespace PencilDurability {
 
         paper.replace(pos, text.size(), "     ");
     }
+
+    void Pencil::insertTextToPaper(std::string text, std::string& paper)
+    {
+        paper = "An onion a day keeps the doctor away";
+    }
 }
