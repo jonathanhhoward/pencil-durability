@@ -8,6 +8,7 @@ namespace PencilDurability {
 
     void Pencil::eraseTextFromPaper(std::string text, std::string& paper)
     {
-        paper = "How much wood would a woodchuck chuck if a woodchuck could       wood?";
+        auto pos = paper.rfind(text, std::string::npos);
+        paper.replace(pos, text.size(), "     ");
     }
 }

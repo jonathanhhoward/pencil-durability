@@ -30,7 +30,7 @@ SCENARIO("pencils can write text to paper")
 
 SCENARIO("pencils can erase text from paper")
 {
-    GIVEN("a pencil and paper") {
+    GIVEN("a pencil and paper with text") {
         Pencil pencil;
         std::string paper{ "How much wood would a woodchuck chuck if a woodchuck could chuck wood?" };
 
@@ -39,6 +39,14 @@ SCENARIO("pencils can erase text from paper")
 
             THEN("the last occurrence of the text is replaced with blank spaces") {
                 CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
+            }
+
+            WHEN("when the text matches a substring") {
+                pencil.eraseTextFromPaper("chuck", paper);
+
+                THEN("the substring is replaced with blank spaces") {
+                    CHECK(paper == "How much wood would a woodchuck chuck if a wood      could       wood?");
+                }
             }
         }
     }
