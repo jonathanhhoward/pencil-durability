@@ -1,6 +1,11 @@
 #include "Pencil.h"
 
 namespace PencilDurability {
+    Pencil::Pencil(int initPointDurability)
+            :pointDurability{ 100 }
+    {
+    }
+
     void Pencil::writeTextToPaper(std::string text, std::string& paper)
     {
         paper += text;
