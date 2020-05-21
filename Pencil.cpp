@@ -30,7 +30,7 @@ namespace PencilDurability {
         std::string text;
 
         for (char c : instruction)
-            text += point.write(c);
+            text += point.writeAndDegrade(c);
 
         return text;
     }

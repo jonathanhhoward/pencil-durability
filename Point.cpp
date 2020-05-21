@@ -7,32 +7,31 @@ namespace PencilDurability {
     {
     }
 
-    bool Point::isRemaining() const
+    char Point::writeAndDegrade(char charToWrite)
     {
-        return durability != 0;
-    }
+        const char SPACE = ' ';
 
-    void Point::degrade()
-    {
-        --durability;
-    }
+        if (isDull()) return SPACE;
 
-    char Point::write(char c)
-    {
-        char charToWrite;
-        std::locale loc("C");
-
-        if (isRemaining()) {
-            charToWrite = c;
-            if (std::isspace(c, loc))
-                return charToWrite;
-            if (std::isupper(c, loc))
-                degrade();
-            degrade();
-        }
-        else
-            charToWrite = ' ';
+        degrade(charToWrite);
 
         return charToWrite;
+    }
+
+    bool Point::isDull() const
+    {
+        return durability == 0;
+    }
+
+    void Point::degrade(char c)
+    {
+        std::locale loc("C");
+
+        if (std::isspace(c, loc)) return;
+
+        if (std::isupper(c, loc))
+            durability -= 2;
+        else
+            --durability;
     }
 }

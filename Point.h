@@ -6,11 +6,13 @@ namespace PencilDurability {
     public:
         explicit Point(int initDurability);
 
-        bool isRemaining() const;
-        void degrade();
-        char write(char c);
+        char writeAndDegrade(char charToWrite);
 
         int durability;
+
+    private:
+        bool isDull() const;
+        void degrade(char c);
     };
 }
 
