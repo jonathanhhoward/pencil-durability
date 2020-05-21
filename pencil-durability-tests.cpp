@@ -123,5 +123,13 @@ SCENARIO("pencil points degrade with use")
                 CHECK(paper == "Tex ");
             }
         }
+
+        WHEN("the pencil writes whitespace"){
+            pencil.writeTextToPaper("te \nxt", paper);
+
+            THEN("the point does not degrade"){
+                CHECK(paper == "te \nxt");
+            }
+        }
     }
 }

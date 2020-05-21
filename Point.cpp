@@ -20,10 +20,13 @@ namespace PencilDurability {
     char Point::write(char c)
     {
         char charToWrite;
+        std::locale loc("C");
 
         if (isRemaining()) {
             charToWrite = c;
-            if (std::isupper(c, std::locale("C")))
+            if (std::isspace(c, loc))
+                return charToWrite;
+            if (std::isupper(c, loc))
                 degrade();
             degrade();
         }
