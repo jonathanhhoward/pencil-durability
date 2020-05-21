@@ -10,4 +10,9 @@ namespace PencilDurability {
     {
         return durability != 0;
     }
+
+    void Point::degrade()
+    {
+        --durability;
+    }
 }

@@ -7,6 +7,7 @@ namespace PencilDurability {
         explicit Point(int initDurability);
 
         bool isRemaining() const;
+        void degrade();
 
         int durability;
     };

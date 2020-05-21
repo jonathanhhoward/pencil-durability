@@ -13,7 +13,7 @@ namespace PencilDurability {
         for (char c : text) {
             if (point.isRemaining()) {
                 letters += c;
-                --point.durability;
+                point.degrade();
             }
             else
                 letters += ' ';
