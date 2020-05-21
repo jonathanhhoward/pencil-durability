@@ -8,6 +8,7 @@ namespace PencilDurability {
 
         bool isRemaining() const;
         void degrade();
+        char write(char c);
 
         int durability;
     };

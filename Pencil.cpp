@@ -10,18 +10,9 @@ namespace PencilDurability {
     void Pencil::writeTextToPaper(std::string text, std::string& paper)
     {
         std::string letters;
-        std::locale loc("C");
 
-        for (char c : text) {
-            if (point.isRemaining()) {
-                letters += c;
-                if (std::isupper(c, loc))
-                    point.degrade();
-                point.degrade();
-            }
-            else
-                letters += ' ';
-        }
+        for (char c : text)
+            letters += point.write(c);
 
         paper += letters;
     }
