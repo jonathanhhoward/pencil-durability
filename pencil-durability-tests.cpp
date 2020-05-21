@@ -115,5 +115,13 @@ SCENARIO("pencil points degrade with use")
                 CHECK(paper == "text ");
             }
         }
+
+        WHEN("the pencil writes an uppercase letter") {
+            pencil.writeTextToPaper("Text", paper);
+
+            THEN("the point durability degrades by two") {
+                CHECK(paper == "Tex ");
+            }
+        }
     }
 }
