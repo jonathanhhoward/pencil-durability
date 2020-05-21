@@ -1,5 +1,4 @@
 #include "Pencil.h"
-#include <locale>
 
 namespace PencilDurability {
     Pencil::Pencil(int initPointDurability)
@@ -7,14 +6,9 @@ namespace PencilDurability {
     {
     }
 
-    void Pencil::writeTextToPaper(std::string text, std::string& paper)
+    void Pencil::writeTextToPaper(std::string_view instruction, std::string& paper)
     {
-        std::string letters;
-
-        for (char c : text)
-            letters += point.write(c);
-
-        paper += letters;
+        paper += writeTextFrom(instruction);
     }
 
     void Pencil::eraseTextFromPaper(std::string text, std::string& paper)
@@ -29,5 +23,15 @@ namespace PencilDurability {
     void Pencil::insertTextToPaper(std::string text, std::string& paper)
     {
         paper = "An onion a day keeps the doctor away";
+    }
+
+    std::string Pencil::writeTextFrom(std::string_view instruction)
+    {
+        std::string text;
+
+        for (char c : instruction)
+            text += point.write(c);
+
+        return text;
     }
 }
