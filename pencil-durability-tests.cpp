@@ -4,19 +4,6 @@
 
 using namespace PencilDurability;
 
-SCENARIO("pencil points have durability")
-{
-    GIVEN("each pencil is unique") {
-        WHEN("a pencil is made") {
-            Pencil pencil;
-
-            THEN("it is has an initial point durability value") {
-                CHECK(pencil.point.durability == 100);
-            }
-        }
-    }
-}
-
 SCENARIO("pencils can write text to paper")
 {
     GIVEN("a pencil and paper") {
