@@ -5,14 +5,12 @@ namespace PencilDurability {
     class Point {
     public:
         explicit Point(int initDurability);
-
         char writeAndDegrade(char charToWrite);
-
-        int durability;
 
     private:
         bool isDull() const;
         void degrade(char c);
+        int durability;
     };
 }
 

@@ -13,10 +13,9 @@ namespace PencilDurability {
         void eraseTextFromPaper(std::string text, std::string& paper);
         void insertTextToPaper(std::string text, std::string& paper);
 
-        Point point;
-
     private:
         std::string writeTextFrom(std::string_view instruction);
+        Point point;
     };
 }
 
