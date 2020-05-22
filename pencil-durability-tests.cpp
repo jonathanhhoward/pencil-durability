@@ -8,7 +8,7 @@ SCENARIO("pencil points have durability")
 {
     GIVEN("each pencil is unique") {
         WHEN("a pencil is made") {
-            Pencil pencil{ 100 };
+            Pencil pencil;
 
             THEN("it is has an initial point durability value") {
                 CHECK(pencil.point.durability == 100);
@@ -20,7 +20,7 @@ SCENARIO("pencil points have durability")
 SCENARIO("pencils can write text to paper")
 {
     GIVEN("a pencil and paper") {
-        Pencil pencil{ 100 };
+        Pencil pencil;
         std::string paper;
 
         WHEN("the pencil writes text") {
@@ -44,7 +44,7 @@ SCENARIO("pencils can write text to paper")
 SCENARIO("pencils can erase text from paper")
 {
     GIVEN("a pencil and paper with text") {
-        Pencil pencil{ 100 };
+        Pencil pencil;
         std::string paper{ "How much wood would a woodchuck chuck if a woodchuck could chuck wood?" };
 
         WHEN("a pencil erases text from the paper") {
@@ -76,7 +76,7 @@ SCENARIO("pencils can erase text from paper")
 SCENARIO("pencils can insert text to paper")
 {
     GIVEN("a pencil and paper with erasures") {
-        Pencil pencil{ 100 };
+        Pencil pencil;
         std::string paper{ "An       a day keeps the doctor away" };
 
         WHEN("the pencil writes to empty space") {

@@ -8,7 +8,7 @@
 namespace PencilDurability {
     class Pencil {
     public:
-        explicit Pencil(int initPointDurability);
+        explicit Pencil(int initPointDurability = 100);
         void writeTextToPaper(std::string_view instruction, std::string& paper);
         void eraseTextFromPaper(std::string text, std::string& paper);
         void insertTextToPaper(std::string text, std::string& paper);
