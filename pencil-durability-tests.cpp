@@ -137,12 +137,23 @@ SCENARIO("a pencil can be sharpened")
 
         WHEN("a dull pencil is sharpened") {
             pencil.writeTextToPaper("Text", paper);
+
             CHECK(paper == "Tex ");
+
             pencil.sharpen();
+            pencil.writeTextToPaper("Text", paper);
 
             THEN("its point durability is restored and the length is shortened by one") {
-                pencil.writeTextToPaper("Text", paper);
                 CHECK(paper == "Tex Tex ");
+            }
+
+            AND_WHEN("no length remains") {
+                pencil.sharpen();
+                pencil.writeTextToPaper("Text", paper);
+
+                THEN("the pencil cannot be sharpened") {
+                    CHECK(paper == "Tex Tex     ");
+                }
             }
         }
     }

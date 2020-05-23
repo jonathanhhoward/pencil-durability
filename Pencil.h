@@ -17,6 +17,7 @@ namespace PencilDurability {
     private:
         std::string writeTextFrom(std::string_view instruction);
         Point point;
+        int length;
     };
 }
 
