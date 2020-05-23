@@ -17,7 +17,7 @@ SCENARIO("pencils can write text to paper")
                 CHECK(paper == "She sells sea shells");
             }
 
-            WHEN("additional text is written") {
+            AND_WHEN("additional text is written") {
                 pencil.writeTextToPaper(" down by the sea shore", paper);
 
                 THEN("the text is appended to existing text on the paper") {
@@ -41,7 +41,7 @@ SCENARIO("pencils can erase text from paper")
                 CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
             }
 
-            WHEN("when the text matches a substring") {
+            AND_WHEN("when the text matches a substring") {
                 pencil.eraseTextFromPaper("chuck", paper);
 
                 THEN("the substring is replaced with blank spaces") {
