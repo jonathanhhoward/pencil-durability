@@ -111,10 +111,18 @@ SCENARIO("pencil points degrade with use")
             }
         }
 
-        WHEN("the pencil writes whitespace"){
+        WHEN("the remaining point durability is one") {
+            pencil.writeTextToPaper("tex Mex", paper);
+
+            THEN("an uppercase letter may still be written") {
+                CHECK(paper == "tex M  ");
+            }
+        }
+
+        WHEN("the pencil writes whitespace") {
             pencil.writeTextToPaper("te \nxt", paper);
 
-            THEN("the point does not degrade"){
+            THEN("the point does not degrade") {
                 CHECK(paper == "te \nxt");
             }
         }

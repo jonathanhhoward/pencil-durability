@@ -20,7 +20,7 @@ namespace PencilDurability {
 
     bool Point::isDull() const
     {
-        return durability == 0;
+        return durability <= 0;
     }
 
     void Point::degrade(char c)
