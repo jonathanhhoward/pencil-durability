@@ -3,7 +3,8 @@
 
 namespace PencilDurability {
     Point::Point(int initDurability)
-            :durability{ initDurability }
+            :initDurability{ initDurability },
+             durability{ initDurability }
     {
     }
 
@@ -33,5 +34,9 @@ namespace PencilDurability {
             durability -= 2;
         else
             --durability;
+    }
+    void Point::sharpen()
+    {
+        durability = initDurability;
     }
 }

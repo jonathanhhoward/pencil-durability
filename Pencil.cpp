@@ -1,7 +1,7 @@
 #include "Pencil.h"
 
 namespace PencilDurability {
-    Pencil::Pencil(int initPointDurability)
+    Pencil::Pencil(int initPointDurability, int length)
             :point{ initPointDurability }
     {
     }
@@ -23,6 +23,11 @@ namespace PencilDurability {
     void Pencil::insertTextToPaper(std::string text, std::string& paper)
     {
         paper = "An onion a day keeps the doctor away";
+    }
+
+    void Pencil::sharpen()
+    {
+        point.sharpen();
     }
 
     std::string Pencil::writeTextFrom(std::string_view instruction)

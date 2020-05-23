@@ -128,3 +128,22 @@ SCENARIO("pencil points degrade with use")
         }
     }
 }
+
+SCENARIO("a pencil can be sharpened")
+{
+    GIVEN("a pencil with point durability and length") {
+        Pencil pencil(4, 1);
+        std::string paper;
+
+        WHEN("a dull pencil is sharpened") {
+            pencil.writeTextToPaper("Text", paper);
+            CHECK(paper == "Tex ");
+            pencil.sharpen();
+
+            THEN("its point durability is restored and the length is shortened by one") {
+                pencil.writeTextToPaper("Text", paper);
+                CHECK(paper == "Tex Tex ");
+            }
+        }
+    }
+}
