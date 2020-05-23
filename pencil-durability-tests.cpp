@@ -11,17 +11,17 @@ SCENARIO("pencils can write text to paper")
         std::string paper;
 
         WHEN("the pencil writes text") {
-            pencil.writeTextToPaper("She sells sea shells", paper);
-
             THEN("the paper reflects the text that was written") {
+                pencil.writeTextToPaper("She sells sea shells", paper);
+
                 CHECK(paper == "She sells sea shells");
-            }
 
-            AND_WHEN("additional text is written") {
-                pencil.writeTextToPaper(" down by the sea shore", paper);
+                AND_WHEN("additional text is written") {
+                    THEN("the text is appended to existing text on the paper") {
+                        pencil.writeTextToPaper(" down by the sea shore", paper);
 
-                THEN("the text is appended to existing text on the paper") {
-                    CHECK(paper == "She sells sea shells down by the sea shore");
+                        CHECK(paper == "She sells sea shells down by the sea shore");
+                    }
                 }
             }
         }
@@ -35,25 +35,25 @@ SCENARIO("pencils can erase text from paper")
         std::string paper{ "How much wood would a woodchuck chuck if a woodchuck could chuck wood?" };
 
         WHEN("a pencil erases text from the paper") {
-            pencil.eraseTextFromPaper("chuck", paper);
-
             THEN("the last occurrence of the text is replaced with blank spaces") {
-                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
-            }
-
-            AND_WHEN("when the text matches a substring") {
                 pencil.eraseTextFromPaper("chuck", paper);
 
-                THEN("the substring is replaced with blank spaces") {
-                    CHECK(paper == "How much wood would a woodchuck chuck if a wood      could       wood?");
+                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
+
+                AND_WHEN("when the text matches a substring") {
+                    THEN("the substring is replaced with blank spaces") {
+                        pencil.eraseTextFromPaper("chuck", paper);
+
+                        CHECK(paper == "How much wood would a woodchuck chuck if a wood      could       wood?");
+                    }
                 }
             }
         }
 
         WHEN("the text is not found") {
-            pencil.eraseTextFromPaper("duck", paper);
-
             THEN("the paper is not changed") {
+                pencil.eraseTextFromPaper("duck", paper);
+
                 CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could chuck wood?");
             }
         }
@@ -67,9 +67,9 @@ SCENARIO("pencils can insert text to paper")
         std::string paper{ "An       a day keeps the doctor away" };
 
         WHEN("the pencil writes to empty space") {
-            pencil.insertTextToPaper("onion", paper);
-
             THEN("the empty space is filled in with the new text") {
+                pencil.insertTextToPaper("onion", paper);
+
                 CHECK(paper == "An onion a day keeps the doctor away");
             }
         }
@@ -83,9 +83,9 @@ SCENARIO("pencil points degrade with use")
         std::string paper;
 
         WHEN("the pencil writes with a dull point") {
-            pencil.writeTextToPaper("text", paper);
-
             THEN("it only writes spaces") {
+                pencil.writeTextToPaper("text", paper);
+
                 CHECK(paper == "    ");
             }
         }
@@ -96,33 +96,33 @@ SCENARIO("pencil points degrade with use")
         std::string paper;
 
         WHEN("the pencil writes a lowercase letter") {
-            pencil.writeTextToPaper("texts", paper);
-
             THEN("the point durability degrades by one") {
+                pencil.writeTextToPaper("texts", paper);
+
                 CHECK(paper == "text ");
             }
         }
 
         WHEN("the pencil writes an uppercase letter") {
-            pencil.writeTextToPaper("Text", paper);
-
             THEN("the point durability degrades by two") {
+                pencil.writeTextToPaper("Text", paper);
+
                 CHECK(paper == "Tex ");
             }
         }
 
         WHEN("the remaining point durability is one") {
-            pencil.writeTextToPaper("tex Mex", paper);
-
             THEN("an uppercase letter may still be written") {
+                pencil.writeTextToPaper("tex Mex", paper);
+
                 CHECK(paper == "tex M  ");
             }
         }
 
         WHEN("the pencil writes whitespace") {
-            pencil.writeTextToPaper("te \nxt", paper);
-
             THEN("the point does not degrade") {
+                pencil.writeTextToPaper("te \nxt", paper);
+
                 CHECK(paper == "te \nxt");
             }
         }
@@ -136,23 +136,23 @@ SCENARIO("a pencil can be sharpened")
         std::string paper;
 
         WHEN("a dull pencil is sharpened") {
-            pencil.writeTextToPaper("Text", paper);
-
-            CHECK(paper == "Tex ");
-
-            pencil.sharpen();
-            pencil.writeTextToPaper("Text", paper);
-
             THEN("its point durability is restored and the length is shortened by one") {
-                CHECK(paper == "Tex Tex ");
-            }
+                pencil.writeTextToPaper("Text", paper);
 
-            AND_WHEN("no length remains") {
+                CHECK(paper == "Tex ");
+
                 pencil.sharpen();
                 pencil.writeTextToPaper("Text", paper);
 
-                THEN("the pencil cannot be sharpened") {
-                    CHECK(paper == "Tex Tex     ");
+                CHECK(paper == "Tex Tex ");
+
+                AND_WHEN("no length remains") {
+                    THEN("the pencil cannot be sharpened") {
+                        pencil.sharpen();
+                        pencil.writeTextToPaper("Text", paper);
+
+                        CHECK(paper == "Tex Tex     ");
+                    }
                 }
             }
         }
