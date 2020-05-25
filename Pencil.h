@@ -3,6 +3,7 @@
 
 #include <string>
 #include <string_view>
+#include <vector>
 #include "Point.h"
 
 namespace PencilDurability {
@@ -16,8 +17,8 @@ namespace PencilDurability {
 
     private:
         std::string writeTextFrom(std::string_view instruction);
-        Point point;
-        int length;
+        Point& point();
+        std::vector<Point> points;
     };
 }
 

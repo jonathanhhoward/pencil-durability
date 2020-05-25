@@ -2,9 +2,8 @@
 #include <locale>
 
 namespace PencilDurability {
-    Point::Point(int initDurability)
-            :initDurability{ initDurability },
-             durability{ initDurability }
+    Point::Point(int durability)
+            :durability{ durability }
     {
     }
 
@@ -34,9 +33,5 @@ namespace PencilDurability {
             durability -= 2;
         else
             --durability;
-    }
-    void Point::sharpen()
-    {
-        durability = initDurability;
     }
 }

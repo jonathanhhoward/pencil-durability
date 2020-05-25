@@ -2,8 +2,7 @@
 
 namespace PencilDurability {
     Pencil::Pencil(int initPointDurability, int length)
-            :point{ initPointDurability },
-             length{ length }
+            :points(length, Point{ initPointDurability })
     {
     }
 
@@ -28,10 +27,9 @@ namespace PencilDurability {
 
     void Pencil::sharpen()
     {
-        if (length == 0) return;
+        if (points.empty()) return;
 
-        point.sharpen();
-        --length;
+        points.pop_back();
     }
 
     std::string Pencil::writeTextFrom(std::string_view instruction)
@@ -39,8 +37,13 @@ namespace PencilDurability {
         std::string text;
 
         for (char c : instruction)
-            text += point.writeAndDegrade(c);
+            text += !points.empty() ? point().writeAndDegrade(c) : ' ';
 
         return text;
+    }
+
+    Point& Pencil::point()
+    {
+        return points.back();
     }
 }

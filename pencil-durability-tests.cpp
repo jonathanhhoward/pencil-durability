@@ -132,7 +132,7 @@ SCENARIO("pencil points degrade with use")
 SCENARIO("a pencil can be sharpened")
 {
     GIVEN("a pencil with point durability and length") {
-        Pencil pencil(4, 1);
+        Pencil pencil(4, 2);
         std::string paper;
 
         WHEN("a dull pencil is sharpened") {
