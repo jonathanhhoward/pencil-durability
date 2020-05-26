@@ -2,8 +2,14 @@
 
 namespace PencilDurability {
     Pencil::Pencil(int initPointDurability, int length)
-            :points(length, Point{ initPointDurability })
+            :points(length, Point{ initPointDurability }),
+             paper{ nullptr }
     {
+    }
+
+    void Pencil::attach(std::string& paperRef)
+    {
+        paper = &paperRef;
     }
 
     void Pencil::writeTextToPaper(std::string_view instruction, std::string& paper)
