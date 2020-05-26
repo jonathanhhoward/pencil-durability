@@ -7,15 +7,16 @@ namespace PencilDurability {
     {
     }
 
-    char Point::writeAndDegrade(char charToWrite)
+    char Point::extract(char character)
     {
-        const char SPACE = ' ';
+        if (isDull())
+            return ' ';
 
-        if (isDull()) return SPACE;
+        if (std::isspace(character, std::locale("C")))
+            return character;
 
-        degrade(charToWrite);
-
-        return charToWrite;
+        degradeUsing(character);
+        return character;
     }
 
     bool Point::isDull() const
@@ -23,13 +24,9 @@ namespace PencilDurability {
         return durability <= 0;
     }
 
-    void Point::degrade(char c)
+    void Point::degradeUsing(char character)
     {
-        std::locale loc("C");
-
-        if (std::isspace(c, loc)) return;
-
-        if (std::isupper(c, loc))
+        if (std::isupper(character, std::locale("C")))
             durability -= 2;
         else
             --durability;

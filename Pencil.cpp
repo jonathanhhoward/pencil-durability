@@ -43,7 +43,7 @@ namespace PencilDurability {
         std::string str;
 
         for (char c : text)
-            str += !points.empty() ? point().writeAndDegrade(c) : ' ';
+            str += !points.empty() ? point().extract(c) : ' ';
 
         return str;
     }
