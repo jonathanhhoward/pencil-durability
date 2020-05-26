@@ -9,7 +9,7 @@
 namespace PencilDurability {
     class Pencil {
     public:
-        explicit Pencil(int initPointDurability = 100, int length = 100);
+        explicit Pencil(int point = 100, int length = 100, int eraser = 100);
         void attach(std::string& paperRef);
         void write(std::string_view text);
         void erase(std::string_view text);
@@ -20,6 +20,7 @@ namespace PencilDurability {
         std::string buildString(std::string_view text);
         Point& point();
         std::vector<Point> points;
+        int eraser;
         std::string* paper;
     };
 }

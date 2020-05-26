@@ -164,3 +164,20 @@ SCENARIO("a pencil can be sharpened")
         }
     }
 }
+
+SCENARIO("the pencil eraser degrades with use")
+{
+    GIVEN("a pencil eraser with no durability remaining") {
+        Pencil pencil{ 100, 100, 0 };
+        std::string paper{ "text" };
+        pencil.attach(paper);
+
+        WHEN("the eraser is used") {
+            THEN("it will not erase") {
+                pencil.erase("text");
+
+                CHECK(paper == "text");
+            }
+        }
+    }
+}

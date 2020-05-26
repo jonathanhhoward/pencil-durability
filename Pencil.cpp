@@ -1,8 +1,9 @@
 #include "Pencil.h"
 
 namespace PencilDurability {
-    Pencil::Pencil(int initPointDurability, int length)
-            :points(length, Point{ initPointDurability }),
+    Pencil::Pencil(int point, int length, int eraser)
+            :points(length, Point{ point }),
+             eraser{ eraser },
              paper{ nullptr }
     {
     }
@@ -19,6 +20,8 @@ namespace PencilDurability {
 
     void Pencil::erase(std::string_view text)
     {
+        if (!eraser) return;
+
         auto pos = paper->rfind(text, std::string::npos);
 
         if (pos == std::string::npos) return;
