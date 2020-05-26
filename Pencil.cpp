@@ -14,7 +14,7 @@ namespace PencilDurability {
 
     void Pencil::write(std::string_view text)
     {
-        *paper += writeTextFrom(text);
+        *paper += buildString(text);
     }
 
     void Pencil::erase(std::string_view text)
@@ -38,14 +38,14 @@ namespace PencilDurability {
         points.pop_back();
     }
 
-    std::string Pencil::writeTextFrom(std::string_view instruction)
+    std::string Pencil::buildString(std::string_view text)
     {
-        std::string text;
+        std::string str;
 
-        for (char c : instruction)
-            text += !points.empty() ? point().writeAndDegrade(c) : ' ';
+        for (char c : text)
+            str += !points.empty() ? point().writeAndDegrade(c) : ' ';
 
-        return text;
+        return str;
     }
 
     Point& Pencil::point()

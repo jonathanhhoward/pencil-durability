@@ -17,7 +17,7 @@ namespace PencilDurability {
         void sharpen();
 
     private:
-        std::string writeTextFrom(std::string_view instruction);
+        std::string buildString(std::string_view text);
         Point& point();
         std::vector<Point> points;
         std::string* paper;
