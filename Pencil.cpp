@@ -12,23 +12,23 @@ namespace PencilDurability {
         paper = &paperRef;
     }
 
-    void Pencil::writeTextToPaper(std::string_view instruction, std::string& paper)
+    void Pencil::write(std::string_view text)
     {
-        paper += writeTextFrom(instruction);
+        *paper += writeTextFrom(text);
     }
 
-    void Pencil::eraseTextFromPaper(std::string text, std::string& paper)
+    void Pencil::erase(std::string_view text)
     {
-        auto pos = paper.rfind(text, std::string::npos);
+        auto pos = paper->rfind(text, std::string::npos);
 
         if (pos == std::string::npos) return;
 
-        paper.replace(pos, text.size(), "     ");
+        paper->replace(pos, text.size(), "     ");
     }
 
-    void Pencil::insertTextToPaper(std::string text, std::string& paper)
+    void Pencil::insert(std::string_view text)
     {
-        paper = "An onion a day keeps the doctor away";
+        *paper = "An onion a day keeps the doctor away";
     }
 
     void Pencil::sharpen()

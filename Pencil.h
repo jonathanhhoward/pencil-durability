@@ -11,9 +11,9 @@ namespace PencilDurability {
     public:
         explicit Pencil(int initPointDurability = 100, int length = 100);
         void attach(std::string& paperRef);
-        void writeTextToPaper(std::string_view instruction, std::string& paper);
-        void eraseTextFromPaper(std::string text, std::string& paper);
-        void insertTextToPaper(std::string text, std::string& paper);
+        void write(std::string_view text);
+        void erase(std::string_view text);
+        void insert(std::string_view text);
         void sharpen();
 
     private:
