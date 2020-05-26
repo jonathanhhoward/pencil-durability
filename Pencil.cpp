@@ -1,4 +1,5 @@
 #include "Pencil.h"
+#include <locale>
 
 namespace PencilDurability {
     Pencil::Pencil(int point, int length, int eraser)
@@ -26,7 +27,16 @@ namespace PencilDurability {
 
         if (pos == std::string::npos) return;
 
-        paper->replace(pos, text.size(), "     ");
+        std::string erased{ text };
+        for (int i = 0; i < erased.size(); ++i) {
+            if (!eraser) break;
+            auto off = erased.size() - 1 - i;
+            if (std::isspace(erased[off], std::locale("C"))) continue;
+            erased.replace(off, 1, " ");
+            --eraser;
+        }
+
+        paper->replace(pos, text.size(), erased);
     }
 
     void Pencil::insert(std::string_view text)

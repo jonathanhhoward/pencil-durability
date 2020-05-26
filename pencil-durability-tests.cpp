@@ -137,7 +137,7 @@ SCENARIO("pencil points degrade with use")
 SCENARIO("a pencil can be sharpened")
 {
     GIVEN("a pencil with point durability and length") {
-        Pencil pencil(4, 2);
+        Pencil pencil{ 4, 2 };
         std::string paper;
         pencil.attach(paper);
 
@@ -177,6 +177,20 @@ SCENARIO("the pencil eraser degrades with use")
                 pencil.erase("text");
 
                 CHECK(paper == "text");
+            }
+        }
+    }
+
+    GIVEN("a pencil eraser with durability remaining") {
+        Pencil pencil{ 100, 100, 5 };
+        std::string paper{ "Buffalo Bill" };
+        pencil.attach(paper);
+
+        WHEN("the eraser is used") {
+            THEN("it removes characters in reverse order one durability point each not counting spaces") {
+                pencil.erase("Buffalo Bill");
+
+                CHECK(paper == "Buffal      ");
             }
         }
     }
