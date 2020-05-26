@@ -25,18 +25,7 @@ namespace PencilDurability {
 
         if (pos == std::string::npos) return;
 
-        std::string erased;
-        for (auto i = text.rbegin(); i != text.rend(); ++i) {
-            if (!eraser)
-                erased.insert(0, std::string{ *i });
-            else {
-                erased.insert(0, " ");
-                if (!std::isspace(*i, std::locale("C")))
-                    --eraser;
-            }
-        }
-
-        paper->replace(pos, text.size(), erased);
+        paper->replace(pos, text.size(), buildEraseString(text));
     }
 
     void Pencil::insert(std::string_view text)
@@ -57,6 +46,23 @@ namespace PencilDurability {
 
         for (char c : text)
             str += point().extract(c);
+
+        return str;
+    }
+
+    std::string Pencil::buildEraseString(std::string_view text)
+    {
+        std::string str;
+
+        for (auto i = text.rbegin(); i != text.rend(); ++i) {
+            if (!eraser)
+                str.insert(0, std::string{ *i });
+            else {
+                str.insert(0, " ");
+                if (!std::isspace(*i, std::locale("C")))
+                    --eraser;
+            }
+        }
 
         return str;
     }

@@ -18,6 +18,7 @@ namespace PencilDurability {
 
     private:
         std::string buildString(std::string_view text);
+        std::string buildEraseString(std::string_view text);
         Point& point();
         std::vector<Point> points;
         int eraser;
