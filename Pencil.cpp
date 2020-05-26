@@ -21,19 +21,19 @@ namespace PencilDurability {
 
     void Pencil::erase(std::string_view text)
     {
-        if (!eraser) return;
-
         auto pos = paper->rfind(text, std::string::npos);
 
         if (pos == std::string::npos) return;
 
-        std::string erased{ text };
-        for (int i = 0; i < erased.size(); ++i) {
-            if (!eraser) break;
-            auto off = erased.size() - 1 - i;
-            if (std::isspace(erased[off], std::locale("C"))) continue;
-            erased.replace(off, 1, " ");
-            --eraser;
+        std::string erased;
+        for (auto i = text.rbegin(); i != text.rend(); ++i) {
+            if (!eraser)
+                erased.insert(0, std::string{ *i });
+            else {
+                erased.insert(0, " ");
+                if (!std::isspace(*i, std::locale("C")))
+                    --eraser;
+            }
         }
 
         paper->replace(pos, text.size(), erased);
