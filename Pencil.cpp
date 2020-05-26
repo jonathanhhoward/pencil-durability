@@ -33,7 +33,7 @@ namespace PencilDurability {
 
     void Pencil::sharpen()
     {
-        if (points.empty()) return;
+        if (points.size() == 1) return;
 
         points.pop_back();
     }
@@ -43,7 +43,7 @@ namespace PencilDurability {
         std::string str;
 
         for (char c : text)
-            str += !points.empty() ? point().extract(c) : ' ';
+            str += point().extract(c);
 
         return str;
     }
