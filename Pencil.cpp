@@ -22,6 +22,8 @@ namespace PencilDurability {
 
     void Pencil::erase(std::string_view text)
     {
+        if (!paper) throw std::runtime_error{ "invalid reference to paper" };
+
         auto pos = paper->rfind(text, std::string::npos);
 
         if (pos == std::string::npos) return;

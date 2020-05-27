@@ -42,6 +42,16 @@ SCENARIO("pencils can write text to paper")
 
 SCENARIO("pencils can erase text from paper")
 {
+    GIVEN("a pencil and no paper"){
+        Pencil pencil;
+
+        WHEN("the pencil erases without paper") {
+            THEN("the pencil throws an exception"){
+                REQUIRE_THROWS_WITH(pencil.erase("text"), "invalid reference to paper");
+            }
+        }
+    }
+
     GIVEN("a pencil and paper with text") {
         Pencil pencil;
         std::string paper{ "How much wood would a woodchuck chuck if a woodchuck could chuck wood?" };
