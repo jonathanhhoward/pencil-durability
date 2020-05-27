@@ -1,4 +1,5 @@
 #include "Pencil.h"
+#include <stdexcept>
 
 namespace PencilDurability {
     Pencil::Pencil(int point, int length, int eraser)
@@ -15,6 +16,7 @@ namespace PencilDurability {
 
     void Pencil::write(std::string_view text)
     {
+        if (!paper) throw std::runtime_error{ "invalid reference to paper" };
         *paper += buildString(text);
     }
 

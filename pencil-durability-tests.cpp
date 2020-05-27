@@ -1,11 +1,22 @@
 #include "catch.hpp"
 #include <string>
 #include "Pencil.h"
+#include <exception>
 
 using namespace PencilDurability;
 
 SCENARIO("pencils can write text to paper")
 {
+    GIVEN("a pencil and no paper"){
+        Pencil pencil;
+
+        WHEN("the pencil writes without paper") {
+            THEN("the pencil throws an exception"){
+                REQUIRE_THROWS_WITH(pencil.write("text"), "invalid reference to paper");
+            }
+        }
+    }
+
     GIVEN("a pencil and paper") {
         Pencil pencil;
         std::string paper;
