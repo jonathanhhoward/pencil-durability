@@ -1,5 +1,4 @@
 #include "Pencil.h"
-#include <locale>
 
 namespace PencilDurability {
     Pencil::Pencil(int point, int length, int eraser)
@@ -54,15 +53,8 @@ namespace PencilDurability {
     {
         std::string str;
 
-        for (auto i = text.rbegin(); i != text.rend(); ++i) {
-            if (!eraser)
-                str.insert(0, std::string{ *i });
-            else {
-                str.insert(0, " ");
-                if (!std::isspace(*i, std::locale("C")))
-                    --eraser;
-            }
-        }
+        for (auto i = text.rbegin(); i != text.rend(); ++i)
+            str.insert(0, std::string{ eraser.erase(*i) });
 
         return str;
     }

@@ -5,6 +5,7 @@
 #include <string_view>
 #include <vector>
 #include "Point.h"
+#include "Eraser.h"
 
 namespace PencilDurability {
     class Pencil {
@@ -21,7 +22,7 @@ namespace PencilDurability {
         std::string buildEraseString(std::string_view text);
         Point& point();
         std::vector<Point> points;
-        int eraser;
+        Eraser eraser;
         std::string* paper;
     };
 }
