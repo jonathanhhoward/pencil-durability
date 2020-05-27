@@ -27,15 +27,15 @@ SCENARIO("pencils can write text to paper")
         pencil.attach(paper);
 
         WHEN("the pencil writes text") {
-            THEN("the paper reflects the text that was written") {
-                pencil.write("She sells sea shells");
+            pencil.write("She sells sea shells");
 
+            THEN("the paper reflects the text that was written") {
                 CHECK(paper == "She sells sea shells");
 
                 AND_WHEN("additional text is written") {
-                    THEN("the text is appended to existing text on the paper") {
-                        pencil.write(" down by the sea shore");
+                    pencil.write(" down by the sea shore");
 
+                    THEN("the text is appended to existing text on the paper") {
                         CHECK(paper == "She sells sea shells down by the sea shore");
                     }
                 }
@@ -52,15 +52,15 @@ SCENARIO("pencils can erase text from paper")
         pencil.attach(paper);
 
         WHEN("a pencil erases text from the paper") {
-            THEN("the last occurrence of the text is replaced with blank spaces") {
-                pencil.erase("chuck");
+            pencil.erase("chuck");
 
+            THEN("the last occurrence of the text is replaced with blank spaces") {
                 CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
 
                 AND_WHEN("when the text matches a substring") {
-                    THEN("the substring is replaced with blank spaces") {
-                        pencil.erase("chuck");
+                    pencil.erase("chuck");
 
+                    THEN("the substring is replaced with blank spaces") {
                         CHECK(paper == "How much wood would a woodchuck chuck if a wood      could       wood?");
                     }
                 }
@@ -68,9 +68,9 @@ SCENARIO("pencils can erase text from paper")
         }
 
         WHEN("the text is not found") {
-            THEN("the paper is not changed") {
-                pencil.erase("duck");
+            pencil.erase("duck");
 
+            THEN("the paper is not changed") {
                 CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could chuck wood?");
             }
         }
@@ -85,9 +85,9 @@ SCENARIO("pencils can insert text to paper")
         pencil.attach(paper);
 
         WHEN("the pencil writes to empty space") {
-            THEN("the empty space is filled in with the new text") {
-                pencil.insert("onion");
+            pencil.insert("onion");
 
+            THEN("the empty space is filled in with the new text") {
                 CHECK(paper == "An onion a day keeps the doctor away");
             }
         }
@@ -102,9 +102,9 @@ SCENARIO("pencil points degrade with use")
         pencil.attach(paper);
 
         WHEN("the pencil writes with a dull point") {
-            THEN("it only writes spaces") {
-                pencil.write("text");
+            pencil.write("text");
 
+            THEN("it only writes spaces") {
                 CHECK(paper == "    ");
             }
         }
@@ -116,33 +116,33 @@ SCENARIO("pencil points degrade with use")
         pencil.attach(paper);
 
         WHEN("the pencil writes a lowercase letter") {
-            THEN("the point durability degrades by one") {
-                pencil.write("texts");
+            pencil.write("texts");
 
+            THEN("the point durability degrades by one") {
                 CHECK(paper == "text ");
             }
         }
 
         WHEN("the pencil writes an uppercase letter") {
-            THEN("the point durability degrades by two") {
-                pencil.write("Text");
+            pencil.write("Text");
 
+            THEN("the point durability degrades by two") {
                 CHECK(paper == "Tex ");
             }
         }
 
         WHEN("the remaining point durability is one") {
-            THEN("an uppercase letter may still be written") {
-                pencil.write("tex Mex");
+            pencil.write("tex Mex");
 
+            THEN("an uppercase letter may still be written") {
                 CHECK(paper == "tex M  ");
             }
         }
 
         WHEN("the pencil writes whitespace") {
-            THEN("the point does not degrade") {
-                pencil.write("te \nxt");
+            pencil.write("te \nxt");
 
+            THEN("the point does not degrade") {
                 CHECK(paper == "te \nxt");
             }
         }
@@ -157,21 +157,21 @@ SCENARIO("a pencil can be sharpened")
         pencil.attach(paper);
 
         WHEN("a dull pencil is sharpened") {
+            pencil.write("Text");
+
+            CHECK(paper == "Tex ");
+
+            pencil.sharpen();
+            pencil.write("Text");
+
             THEN("its point durability is restored and the length is shortened by one") {
-                pencil.write("Text");
-
-                CHECK(paper == "Tex ");
-
-                pencil.sharpen();
-                pencil.write("Text");
-
                 CHECK(paper == "Tex Tex ");
 
                 AND_WHEN("no length remains") {
-                    THEN("the pencil cannot be sharpened") {
-                        pencil.sharpen();
-                        pencil.write("Text");
+                    pencil.sharpen();
+                    pencil.write("Text");
 
+                    THEN("the pencil cannot be sharpened") {
                         CHECK(paper == "Tex Tex     ");
                     }
                 }
@@ -188,9 +188,9 @@ SCENARIO("the pencil eraser degrades with use")
         pencil.attach(paper);
 
         WHEN("the eraser is used") {
-            THEN("it will not erase") {
-                pencil.erase("text");
+            pencil.erase("text");
 
+            THEN("it will not erase") {
                 CHECK(paper == "text");
             }
         }
@@ -202,9 +202,9 @@ SCENARIO("the pencil eraser degrades with use")
         pencil.attach(paper);
 
         WHEN("the eraser is used") {
-            THEN("it removes characters in reverse order one durability point each not counting spaces") {
-                pencil.erase("Buffalo Bill");
+            pencil.erase("Buffalo Bill");
 
+            THEN("it removes characters in reverse order one durability point each not counting spaces") {
                 CHECK(paper == "Buffal      ");
             }
         }
