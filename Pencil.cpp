@@ -16,13 +16,14 @@ namespace PencilDurability {
 
     void Pencil::write(std::string_view text)
     {
-        if (!paper) throw std::runtime_error{ "invalid reference to paper" };
+        checkPaper();
+
         *paper += buildString(text);
     }
 
     void Pencil::erase(std::string_view text)
     {
-        if (!paper) throw std::runtime_error{ "invalid reference to paper" };
+        checkPaper();
 
         auto pos = paper->rfind(text, std::string::npos);
 
@@ -41,6 +42,11 @@ namespace PencilDurability {
         if (points.size() == 1) return;
 
         points.pop_back();
+    }
+
+    void Pencil::checkPaper()
+    {
+        if (!paper) throw std::runtime_error{ "invalid reference to paper" };
     }
 
     std::string Pencil::buildString(std::string_view text)
