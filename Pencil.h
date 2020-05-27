@@ -1,6 +1,7 @@
 #ifndef PENCIL_DURABILITY_PENCIL_H
 #define PENCIL_DURABILITY_PENCIL_H
 
+#include <stdexcept>
 #include <string>
 #include <string_view>
 #include <vector>

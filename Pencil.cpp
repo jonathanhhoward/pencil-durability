@@ -1,5 +1,4 @@
 #include "Pencil.h"
-#include <stdexcept>
 
 namespace PencilDurability {
     Pencil::Pencil(int point, int length, int eraser)
@@ -34,6 +33,8 @@ namespace PencilDurability {
 
     void Pencil::insert(std::string_view text)
     {
+        checkPaper();
+
         *paper = "An onion a day keeps the doctor away";
     }
 

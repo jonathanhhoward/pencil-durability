@@ -1,7 +1,6 @@
 #include "catch.hpp"
 #include <string>
 #include "Pencil.h"
-#include <exception>
 
 using namespace PencilDurability;
 
@@ -14,6 +13,7 @@ SCENARIO("pencils are made independent of paper")
             THEN("the pencil throws an exception") {
                 REQUIRE_THROWS_WITH(pencil.write("text"), "invalid reference to paper");
                 REQUIRE_THROWS_WITH(pencil.erase("text"), "invalid reference to paper");
+                REQUIRE_THROWS_WITH(pencil.insert("text"), "invalid reference to paper");
             }
         }
     }
