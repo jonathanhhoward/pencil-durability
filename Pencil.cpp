@@ -40,7 +40,7 @@ namespace PencilDurability {
     {
         checkPaper();
 
-        *paper = "An onion a day keeps the doctor away";
+        *paper = "An onion a day       the doctor away";
     }
 
     void Pencil::sharpen()

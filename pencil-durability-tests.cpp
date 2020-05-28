@@ -81,14 +81,14 @@ SCENARIO("pencils can insert text to paper")
 {
     GIVEN("a pencil and paper with erasures") {
         Pencil pencil;
-        std::string paper{ "An       a day keeps the doctor away" };
+        std::string paper{ "An       a day       the doctor away" };
         pencil.attach(paper);
 
         WHEN("the pencil writes to empty space") {
             pencil.insert("onion");
 
-            THEN("the empty space is filled in with the new text") {
-                CHECK(paper == "An onion a day keeps the doctor away");
+            THEN("the first empty space is filled in with a single space before the insertion") {
+                CHECK(paper == "An onion a day       the doctor away");
             }
         }
     }
