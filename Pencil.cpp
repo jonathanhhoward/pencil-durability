@@ -45,7 +45,7 @@ namespace PencilDurability {
 
     void Pencil::sharpen()
     {
-        if (points.size() == 1) return;
+        if (points.empty()) return;
 
         points.pop_back();
     }

@@ -151,7 +151,7 @@ SCENARIO("pencil points degrade with use")
 
 SCENARIO("a pencil can be sharpened")
 {
-    GIVEN("a pencil with no length") {
+    GIVEN("a pencil with no length remaining") {
         Pencil pencil{ 100, 0 };
         std::string paper;
         pencil.attach(paper);
@@ -160,6 +160,15 @@ SCENARIO("a pencil can be sharpened")
             pencil.write("text");
 
             THEN("it only writes spaces") {
+                CHECK(paper == "    ");
+            }
+        }
+
+        WHEN("the pencil is instructed to sharpen") {
+            pencil.sharpen();
+            pencil.write("text");
+
+            THEN("it does not sharpen") {
                 CHECK(paper == "    ");
             }
         }
