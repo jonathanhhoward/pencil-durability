@@ -1,8 +1,8 @@
 #include "Pencil.h"
 
 namespace PencilDurability {
-    Pencil::Pencil(int point, int length, int eraser)
-            :points(length, Point{ point }),
+    Pencil::Pencil(int point, std::size_t length, int eraser)
+            :points{ length, Point{ point }},
              eraser{ eraser },
              paper{ nullptr }
     {
