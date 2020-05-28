@@ -156,14 +156,6 @@ SCENARIO("a pencil can be sharpened")
         std::string paper;
         pencil.attach(paper);
 
-        WHEN("the pencil is instructed to write") {
-            pencil.write("text");
-
-            THEN("it only writes spaces") {
-                CHECK(paper == "    ");
-            }
-        }
-
         WHEN("the pencil is instructed to sharpen") {
             pencil.sharpen();
             pencil.write("text");
@@ -194,7 +186,7 @@ SCENARIO("a pencil can be sharpened")
                     pencil.sharpen();
                     pencil.write("Text");
 
-                    THEN("the pencil cannot be sharpened") {
+                    THEN("the pencil writes spaces") {
                         CHECK(paper == "Tex Tex     ");
                     }
                 }
