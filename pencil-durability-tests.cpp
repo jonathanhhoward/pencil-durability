@@ -89,6 +89,12 @@ SCENARIO("pencils can insert text to paper")
 
             THEN("the first empty space is filled in with a single space before the insertion") {
                 CHECK(paper == "An onion a day       the doctor away");
+
+                pencil.insert("onion");
+
+                AND_THEN("the next empty space is filled in") {
+                    CHECK(paper == "An onion a day onion the doctor away");
+                }
             }
         }
     }

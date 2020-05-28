@@ -40,7 +40,9 @@ namespace PencilDurability {
     {
         checkPaper();
 
-        *paper = "An onion a day       the doctor away";
+        auto pos = paper->find("  ");
+
+        paper->replace(pos + 1, text.size(), text);
     }
 
     void Pencil::sharpen()
