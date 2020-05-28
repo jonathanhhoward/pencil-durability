@@ -24,7 +24,7 @@ namespace PencilDurability {
     {
         checkPaper();
 
-        auto pos = paper->rfind(text, std::string::npos);
+        auto pos = paper->rfind(text);
 
         if (pos == std::string::npos) return;
 
