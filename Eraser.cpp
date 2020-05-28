@@ -9,7 +9,7 @@ namespace PencilDurability {
 
     char Eraser::erase(char character)
     {
-        if (!durability)
+        if (durability <= 0)
             return character;
 
         if (!std::isspace(character, std::locale("C")))
