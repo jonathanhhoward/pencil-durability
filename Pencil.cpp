@@ -17,7 +17,7 @@ namespace PencilDurability {
     {
         checkPaper();
 
-        *paper += buildString(text);
+        *paper += buildWriteString(text);
     }
 
     void Pencil::erase(std::string_view text)
@@ -50,7 +50,7 @@ namespace PencilDurability {
         if (!paper) throw std::runtime_error{ "invalid reference to paper" };
     }
 
-    std::string Pencil::buildString(std::string_view text)
+    std::string Pencil::buildWriteString(std::string_view text)
     {
         std::string str;
 
