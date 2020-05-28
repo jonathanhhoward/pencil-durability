@@ -97,6 +97,15 @@ SCENARIO("pencils can insert text to paper")
                 }
             }
         }
+
+        WHEN("the pencil inserts at the start of the paper") {
+            paper = "   apple a day keeps the doctor away";
+            pencil.insert("An");
+
+            THEN("there is no space before the insertion") {
+                CHECK(paper == "An apple a day keeps the doctor away");
+            }
+        }
     }
 }
 

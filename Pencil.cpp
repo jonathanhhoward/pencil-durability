@@ -42,7 +42,9 @@ namespace PencilDurability {
 
         auto pos = paper->find("  ");
 
-        paper->replace(pos + 1, text.size(), text);
+        auto off = (pos == 0) ? pos : pos + 1;
+
+        paper->replace(off, text.size(), text);
     }
 
     void Pencil::sharpen()
