@@ -26,9 +26,14 @@ namespace PencilDurability {
 
         auto pos = paper->rfind(text);
 
-        if (pos == std::string::npos) return;
+        if (isTextNotFound(pos)) return;
 
         paper->replace(pos, text.size(), buildEraseString(text));
+    }
+
+    bool isTextNotFound(std::size_t searchResult)
+    {
+        return searchResult == std::string::npos;
     }
 
     void Pencil::insert(std::string_view text)

@@ -1,6 +1,7 @@
 #ifndef PENCIL_DURABILITY_PENCIL_H
 #define PENCIL_DURABILITY_PENCIL_H
 
+#include <cstddef>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -27,6 +28,8 @@ namespace PencilDurability {
         Eraser eraser;
         std::string* paper;
     };
+
+    bool isTextNotFound(std::size_t searchResult);
 }
 
 #endif //PENCIL_DURABILITY_PENCIL_H
