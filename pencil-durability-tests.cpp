@@ -116,6 +116,15 @@ SCENARIO("pencils can insert text to paper")
                 CHECK(paper == "An artich@k@ay keeps the doctor away");
             }
         }
+
+        WHEN("there is no erasure") {
+            paper = "An apple a day keeps the doctor away";
+            pencil.insert("onion");
+
+            THEN("the insertion is not made") {
+                CHECK(paper == "An apple a day keeps the doctor away");
+            }
+        }
     }
 }
 

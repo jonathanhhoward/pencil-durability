@@ -42,6 +42,8 @@ namespace PencilDurability {
 
         auto pos = paper->find("  ");
 
+        if (isTextNotFound(pos)) return;
+
         auto off = (pos == 0) ? pos : pos + 1;
 
         paper->replace(off, text.size(), buildInsertString(text, off));
