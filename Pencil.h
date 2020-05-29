@@ -23,6 +23,7 @@ namespace PencilDurability {
         void checkPaper();
         std::string buildWriteString(std::string_view text);
         std::string buildEraseString(std::string_view text);
+        std::string buildInsertString(std::string_view text, std::size_t off);
         Point& point();
         std::vector<Point> points;
         Eraser eraser;

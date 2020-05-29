@@ -44,11 +44,7 @@ namespace PencilDurability {
 
         auto off = (pos == 0) ? pos : pos + 1;
 
-        std::string inserted;
-        for (std::size_t i = 0; i < text.size(); ++i)
-            inserted += (paper->at(off + i) == ' ') ? text[i] : '@';
-
-        paper->replace(off, inserted.size(), inserted);
+        paper->replace(off, text.size(), buildInsertString(text, off));
     }
 
     void Pencil::sharpen()
@@ -79,6 +75,16 @@ namespace PencilDurability {
 
         for (auto i = text.rbegin(); i != text.rend(); ++i)
             str.insert(0, std::string{ eraser.erase(*i) });
+
+        return str;
+    }
+
+    std::string Pencil::buildInsertString(std::string_view text, std::size_t off)
+    {
+        std::string str;
+
+        for (std::size_t i = 0; i < text.size(); ++i)
+            str += (paper->at(off + i) == ' ') ? text[i] : '@';
 
         return str;
     }
