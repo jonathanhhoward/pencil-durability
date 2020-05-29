@@ -5,4 +5,9 @@ namespace PencilDurability {
     {
         return std::isspace(c, std::locale{ "C" });
     }
+
+    bool isUpper(char c)
+    {
+        return std::isupper(c, std::locale{ "C" });
+    }
 }

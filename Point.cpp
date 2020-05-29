@@ -25,7 +25,7 @@ namespace PencilDurability {
 
     void Point::degradeUsing(char character)
     {
-        if (std::isupper(character, std::locale("C")))
+        if (isUpper(character))
             durability -= 2;
         else
             --durability;
