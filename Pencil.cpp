@@ -35,7 +35,9 @@ namespace PencilDurability {
     {
         checkPaper();
 
-        auto pos = paper->find("  ");
+        const std::string doubleSpace{ "  " };
+
+        auto pos = paper->find(doubleSpace);
 
         if (isTextNotFound(pos)) return;
 
