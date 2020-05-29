@@ -13,7 +13,8 @@
 namespace PencilDurability {
     class Pencil {
     public:
-        explicit Pencil(int point = 100, std::size_t length = 100, int eraser = 100);
+        // defaults approximate typical #2 pencil
+        explicit Pencil(int point = 3000, std::size_t length = 40, int eraser = 1000);
         void attach(std::string& paperRef);
         void write(std::string_view text);
         void erase(std::string_view text);
