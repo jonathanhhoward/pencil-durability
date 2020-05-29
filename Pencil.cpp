@@ -71,7 +71,7 @@ namespace PencilDurability {
         std::string str;
 
         for (char c : text)
-            str += points.empty() ? ' ' : point().extract(c);
+            str += points.empty() ? ' ' : point().write(c);
 
         return str;
     }

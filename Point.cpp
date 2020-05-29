@@ -7,7 +7,7 @@ namespace PencilDurability {
     {
     }
 
-    char Point::extract(char character)
+    char Point::write(char character)
     {
         if (isDull())
             return ' ';

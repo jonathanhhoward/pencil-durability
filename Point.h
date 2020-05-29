@@ -5,7 +5,7 @@ namespace PencilDurability {
     class Point {
     public:
         explicit Point(int durability);
-        char extract(char character);
+        char write(char character);
 
     private:
         bool isDull() const;
