@@ -20,11 +20,6 @@ namespace PencilDurability {
         *paper += buildWriteString(text);
     }
 
-    bool isTextNotFound(std::size_t searchResult)
-    {
-        return searchResult == std::string::npos;
-    }
-
     void Pencil::erase(std::string_view text)
     {
         checkPaper();
@@ -34,11 +29,6 @@ namespace PencilDurability {
         if (isTextNotFound(pos)) return;
 
         paper->replace(pos, text.size(), buildEraseString(text));
-    }
-
-    bool isStartOfPaper(std::size_t searchResult)
-    {
-        return searchResult == 0;
     }
 
     void Pencil::insert(std::string_view text)
