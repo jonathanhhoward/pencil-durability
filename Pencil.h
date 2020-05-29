@@ -8,6 +8,7 @@
 #include <vector>
 #include "Point.h"
 #include "Eraser.h"
+#include "helpers.h"
 
 namespace PencilDurability {
     class Pencil {

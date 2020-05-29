@@ -1,6 +1,8 @@
 #ifndef PENCIL_DURABILITY_POINT_H
 #define PENCIL_DURABILITY_POINT_H
 
+#include "helpers.h"
+
 namespace PencilDurability {
     class Point {
     public:

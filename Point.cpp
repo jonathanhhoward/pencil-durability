@@ -1,5 +1,4 @@
 #include "Point.h"
-#include <locale>
 
 namespace PencilDurability {
     Point::Point(int durability)
@@ -12,7 +11,7 @@ namespace PencilDurability {
         if (isDull())
             return ' ';
 
-        if (std::isspace(character, std::locale("C")))
+        if (isSpace(character))
             return character;
 
         degradeUsing(character);

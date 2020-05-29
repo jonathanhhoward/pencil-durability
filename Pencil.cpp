@@ -91,7 +91,7 @@ namespace PencilDurability {
         std::string str;
 
         for (std::size_t i = 0; i < text.size(); ++i)
-            str += (paper->at(off + i) == ' ') ? text[i] : '@';
+            str += isSpace(paper->at(off + i)) ? text[i] : '@';
 
         return str;
     }

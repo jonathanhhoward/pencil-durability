@@ -1,7 +1,7 @@
 #ifndef PENCIL_DURABILITY_ERASER_H
 #define PENCIL_DURABILITY_ERASER_H
 
-#include <string>
+#include "helpers.h"
 
 namespace PencilDurability {
     class Eraser {
