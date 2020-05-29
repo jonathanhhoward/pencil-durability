@@ -12,7 +12,7 @@ namespace PencilDurability {
             return character;
 
         if (!isSpace(character))
-            --durability;
+            degrade();
 
         return ' ';
     }
@@ -20,5 +20,10 @@ namespace PencilDurability {
     bool Eraser::isWorn() const
     {
         return durability <= 0;
+    }
+
+    void Eraser::degrade()
+    {
+        --durability;
     }
 }

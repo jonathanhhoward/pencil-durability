@@ -11,6 +11,7 @@ namespace PencilDurability {
 
     private:
         bool isWorn() const;
+        void degrade();
         int durability;
     };
 }
