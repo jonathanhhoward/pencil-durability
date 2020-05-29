@@ -44,7 +44,11 @@ namespace PencilDurability {
 
         auto off = (pos == 0) ? pos : pos + 1;
 
-        paper->replace(off, text.size(), text);
+        std::string inserted;
+        for (std::size_t i = 0; i < text.size(); ++i)
+            inserted += (paper->at(off + i) == ' ') ? text[i] : '@';
+
+        paper->replace(off, inserted.size(), inserted);
     }
 
     void Pencil::sharpen()
