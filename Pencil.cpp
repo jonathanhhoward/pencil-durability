@@ -36,13 +36,11 @@ namespace PencilDurability {
         checkPaper();
 
         const std::string doubleSpace{ "  " };
-
         auto pos = paper->find(doubleSpace);
 
         if (isTextNotFound(pos)) return;
 
         auto off = isStartOfPaper(pos) ? 0 : 1;
-
         paper->replace(pos + off, text.size(), buildInsertString(text, pos + off));
     }
 
