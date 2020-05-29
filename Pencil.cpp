@@ -61,9 +61,10 @@ namespace PencilDurability {
     std::string Pencil::buildWriteString(std::string_view text)
     {
         std::string str;
+        const char space = ' ';
 
         for (char c : text)
-            str += points.empty() ? ' ' : point().write(c);
+            str += points.empty() ? space : point().write(c);
 
         return str;
     }
