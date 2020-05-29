@@ -8,13 +8,15 @@ namespace PencilDurability {
 
     char Eraser::erase(char character)
     {
+        const char space = ' ';
+
         if (isWorn())
             return character;
 
         if (!isSpace(character))
             degrade();
 
-        return ' ';
+        return space;
     }
 
     bool Eraser::isWorn() const
