@@ -10,6 +10,7 @@ namespace PencilDurability {
         char erase(char character);
 
     private:
+        bool isWorn() const;
         int durability;
     };
 }
