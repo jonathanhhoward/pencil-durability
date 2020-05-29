@@ -8,8 +8,10 @@ namespace PencilDurability {
 
     char Point::write(char character)
     {
+        const char space = ' ';
+
         if (isDull())
-            return ' ';
+            return space;
 
         if (isSpace(character))
             return character;
