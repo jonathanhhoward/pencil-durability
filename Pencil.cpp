@@ -31,7 +31,7 @@ namespace PencilDurability {
         paper->replace(pos, text.size(), buildEraseString(text));
     }
 
-    void Pencil::insert(std::string_view text)
+    void Pencil::overwrite(std::string_view text)
     {
         checkPaper();
 
@@ -41,7 +41,7 @@ namespace PencilDurability {
         if (isTextNotFound(pos)) return;
 
         auto off = isStartOfPaper(pos) ? 0 : 1;
-        paper->replace(pos + off, text.size(), buildInsertString(text, pos + off));
+        paper->replace(pos + off, text.size(), buildOverwriteString(text, pos + off));
     }
 
     void Pencil::sharpen()
@@ -78,7 +78,7 @@ namespace PencilDurability {
         return str;
     }
 
-    std::string Pencil::buildInsertString(std::string_view text, std::size_t off)
+    std::string Pencil::buildOverwriteString(std::string_view text, std::size_t off)
     {
         std::string str;
 

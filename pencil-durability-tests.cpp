@@ -13,7 +13,7 @@ SCENARIO("pencils are made independent of paper")
             THEN("the pencil throws an exception") {
                 REQUIRE_THROWS_WITH(pencil.write("text"), "invalid reference to paper");
                 REQUIRE_THROWS_WITH(pencil.erase("text"), "invalid reference to paper");
-                REQUIRE_THROWS_WITH(pencil.insert("text"), "invalid reference to paper");
+                REQUIRE_THROWS_WITH(pencil.overwrite("text"), "invalid reference to paper");
             }
         }
     }
@@ -77,21 +77,21 @@ SCENARIO("pencils can erase text from paper")
     }
 }
 
-SCENARIO("pencils can insert text to paper")
+SCENARIO("pencils can overwrite text on paper")
 {
     GIVEN("a pencil and paper with erasures") {
         Pencil pencil;
         std::string paper;
         pencil.attach(paper);
 
-        WHEN("the pencil writes to empty space") {
+        WHEN("the pencil overwrites to empty space") {
             paper = "An       a day       the doctor away";
-            pencil.insert("onion");
+            pencil.overwrite("onion");
 
-            THEN("the first empty space is filled in with a single space before the insertion") {
+            THEN("the first empty space is filled in with a single space before the overwrite") {
                 CHECK(paper == "An onion a day       the doctor away");
 
-                pencil.insert("onion");
+                pencil.overwrite("onion");
 
                 AND_THEN("the next empty space is filled in") {
                     CHECK(paper == "An onion a day onion the doctor away");
@@ -99,18 +99,18 @@ SCENARIO("pencils can insert text to paper")
             }
         }
 
-        WHEN("the pencil inserts at the start of the paper") {
+        WHEN("the pencil overwrites at the start of the paper") {
             paper = "   apple a day keeps the doctor away";
-            pencil.insert("An");
+            pencil.overwrite("An");
 
-            THEN("there is no space before the insertion") {
+            THEN("there is no space before the overwrite") {
                 CHECK(paper == "An apple a day keeps the doctor away");
             }
         }
 
-        WHEN("the text inserted is larger than the space") {
+        WHEN("the text to overwrite is larger than the space") {
             paper = "An       a day keeps the doctor away";
-            pencil.insert("artichoke");
+            pencil.overwrite("artichoke");
 
             THEN("the space does not resize and overwritten characters will be replaced with '@'") {
                 CHECK(paper == "An artich@k@ay keeps the doctor away");
@@ -119,9 +119,9 @@ SCENARIO("pencils can insert text to paper")
 
         WHEN("there is no erasure") {
             paper = "An apple a day keeps the doctor away";
-            pencil.insert("onion");
+            pencil.overwrite("onion");
 
-            THEN("the insertion is not made") {
+            THEN("the overwrite is not made") {
                 CHECK(paper == "An apple a day keeps the doctor away");
             }
         }
@@ -143,9 +143,9 @@ SCENARIO("pencil points degrade with use")
             }
         }
 
-        WHEN("the pencil inserts with a dull point") {
+        WHEN("the pencil overwrites with a dull point") {
             paper = "one     three";
-            pencil.insert("two");
+            pencil.overwrite("two");
 
             THEN("the paper is not altered") {
                 CHECK(paper == "one     three");

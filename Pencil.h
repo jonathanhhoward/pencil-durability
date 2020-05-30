@@ -18,14 +18,14 @@ namespace PencilDurability {
         void attach(std::string& paperRef);
         void write(std::string_view text);
         void erase(std::string_view text);
-        void insert(std::string_view text);
+        void overwrite(std::string_view text);
         void sharpen();
 
     private:
         void checkPaper();
         std::string buildWriteString(std::string_view text);
         std::string buildEraseString(std::string_view text);
-        std::string buildInsertString(std::string_view text, std::size_t off);
+        std::string buildOverwriteString(std::string_view text, std::size_t off);
         Point& point();
         std::vector<Point> points;
         Eraser eraser;
