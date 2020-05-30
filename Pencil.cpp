@@ -81,10 +81,9 @@ namespace PencilDurability {
     std::string Pencil::buildInsertString(std::string_view text, std::size_t off)
     {
         std::string str;
-        const char overwrite = '@';
 
         for (std::size_t i = 0; i < text.size(); ++i)
-            str += isSpace(paper->at(off + i)) ? text[i] : overwrite;
+            str += point().overwrite(paper->at(off + i), text[i]);
 
         return str;
     }

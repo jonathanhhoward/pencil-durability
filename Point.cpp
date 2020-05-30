@@ -20,6 +20,14 @@ namespace PencilDurability {
         return character;
     }
 
+    char Point::overwrite(char current, char next)
+    {
+        if (isDull()) return current;
+
+        const char overwrite = '@';
+        return isSpace(current) ? next : overwrite;
+    }
+
     bool Point::isDull() const
     {
         return durability <= 0;

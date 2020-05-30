@@ -8,6 +8,7 @@ namespace PencilDurability {
     public:
         explicit Point(int durability);
         char write(char character);
+        char overwrite(char current, char next);
 
     private:
         bool isDull() const;

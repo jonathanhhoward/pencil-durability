@@ -142,6 +142,15 @@ SCENARIO("pencil points degrade with use")
                 CHECK(paper == "    ");
             }
         }
+
+        WHEN("the pencil inserts with a dull point") {
+            paper = "one     three";
+            pencil.insert("two");
+
+            THEN("the paper is not altered") {
+                CHECK(paper == "one     three");
+            }
+        }
     }
 
     GIVEN("a pencil point with durability remaining") {
