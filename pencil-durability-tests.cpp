@@ -145,7 +145,7 @@ SCENARIO("pencil points degrade with use")
 
         WHEN("the pencil overwrites with a dull point") {
             paper = "one     three";
-            pencil.overwrite("two");
+            pencil.overwrite("twenty");
 
             THEN("the paper is not altered") {
                 CHECK(paper == "one     three");
