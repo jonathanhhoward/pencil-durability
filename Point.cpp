@@ -26,7 +26,7 @@ namespace PencilDurability {
 
         if (isDull()) return current;
 
-        --durability;
+        degradeUsing(next);
         return isSpace(current) ? next : overwrite;
     }
 
