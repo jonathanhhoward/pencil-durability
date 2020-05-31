@@ -194,9 +194,11 @@ SCENARIO("pencil points degrade with use")
 
         WHEN("the pencil writes whitespace") {
             pencil1.write("te \nxt");
+            pencil2.overwrite("te \nxt");
 
             THEN("the point does not degrade") {
                 CHECK(paper1 == "te \nxt");
+                CHECK(paper2 == "text te \nx@ext");
             }
         }
     }
