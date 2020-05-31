@@ -183,10 +183,12 @@ SCENARIO("pencil points degrade with use")
         }
 
         WHEN("the remaining point durability is one") {
-            pencil1.write("tex Mex");
+            pencil1.write("texMex");
+            pencil2.overwrite("texMex");
 
             THEN("an uppercase letter may still be written") {
-                CHECK(paper1 == "tex M  ");
+                CHECK(paper1 == "texM  ");
+                CHECK(paper2 == "text texM text");
             }
         }
 
