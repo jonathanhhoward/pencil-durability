@@ -28,9 +28,10 @@ namespace PencilDurability {
 
         if (isDull()) return current;
         if (next == space) return current;
-        if (next == newline) return next;
 
-        degradeUsing(next);
+        if (next != newline)
+            degradeUsing(next);
+
         return isSpace(current) ? next : overwrite;
     }
 

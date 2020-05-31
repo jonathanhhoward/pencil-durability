@@ -134,6 +134,15 @@ SCENARIO("pencils can overwrite text on paper")
                 CHECK(paper == "An apple And@@p@@eps the doctor away");
             }
         }
+
+        WHEN("overwriting with a newline") {
+            paper = "   apple a day keeps the doctor away";
+            pencil.overwrite("An\n\n");
+
+            THEN("spaces become newline and text becomes '@'") {
+                CHECK(paper == "An\n@pple a day keeps the doctor away");
+            }
+        }
     }
 }
 
