@@ -154,57 +154,47 @@ SCENARIO("pencil points degrade with use")
     }
 
     GIVEN("a pencil point with durability remaining") {
-        Pencil pencil{ 4 };
-        std::string paper;
-        pencil.attach(paper);
+        Pencil pencil1{ 4 };
+        std::string paper1;
+        pencil1.attach(paper1);
+
+        Pencil pencil2{ 4 };
+        std::string paper2{ "text      text" };
+        pencil2.attach(paper2);
 
         WHEN("the pencil writes a lowercase letter") {
-            pencil.write("texts");
+            pencil1.write("texts");
+            pencil2.overwrite("texts");
 
             THEN("the point durability degrades by one") {
-                CHECK(paper == "text ");
-            }
-        }
-
-        WHEN("the pencil overwrites a lowercase letter") {
-            paper = "text      text";
-            pencil.overwrite("texts");
-
-            THEN("the point durability degrades by one") {
-                CHECK(paper == "text text text");
+                CHECK(paper1 == "text ");
+                CHECK(paper2 == "text text text");
             }
         }
 
         WHEN("the pencil writes an uppercase letter") {
-            pencil.write("Text");
+            pencil1.write("Text");
+            pencil2.overwrite("Text");
 
             THEN("the point durability degrades by two") {
-                CHECK(paper == "Tex ");
-            }
-        }
-
-        WHEN("the pencil overwrites an uppercase letter") {
-            paper = "Text      Text";
-            pencil.overwrite("Text");
-
-            THEN("the point durability degrades by two") {
-                CHECK(paper == "Text Tex  Text");
+                CHECK(paper1 == "Tex ");
+                CHECK(paper2 == "text Tex  text");
             }
         }
 
         WHEN("the remaining point durability is one") {
-            pencil.write("tex Mex");
+            pencil1.write("tex Mex");
 
             THEN("an uppercase letter may still be written") {
-                CHECK(paper == "tex M  ");
+                CHECK(paper1 == "tex M  ");
             }
         }
 
         WHEN("the pencil writes whitespace") {
-            pencil.write("te \nxt");
+            pencil1.write("te \nxt");
 
             THEN("the point does not degrade") {
-                CHECK(paper == "te \nxt");
+                CHECK(paper1 == "te \nxt");
             }
         }
     }
