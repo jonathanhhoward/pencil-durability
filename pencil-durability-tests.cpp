@@ -166,6 +166,15 @@ SCENARIO("pencil points degrade with use")
             }
         }
 
+        WHEN("the pencil overwrites a lowercase letter") {
+            paper = "text      text";
+            pencil.overwrite("texts");
+
+            THEN("the point durability degrades by one") {
+                CHECK(paper == "text text text");
+            }
+        }
+
         WHEN("the pencil writes an uppercase letter") {
             pencil.write("Text");
 

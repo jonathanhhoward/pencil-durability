@@ -22,9 +22,11 @@ namespace PencilDurability {
 
     char Point::overwrite(char current, char next)
     {
+        const char overwrite = '@';
+
         if (isDull()) return current;
 
-        const char overwrite = '@';
+        --durability;
         return isSpace(current) ? next : overwrite;
     }
 
