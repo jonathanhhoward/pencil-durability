@@ -125,6 +125,15 @@ SCENARIO("pencils can overwrite text on paper")
                 CHECK(paper == "An apple a day keeps the doctor away");
             }
         }
+
+        WHEN("overwriting with a space") {
+            paper = "An apple   day keeps the doctor away";
+            pencil.overwrite("An apple");
+
+            THEN("the overwritten text is unchanged") {
+                CHECK(paper == "An apple And@@p@@eps the doctor away");
+            }
+        }
     }
 }
 
