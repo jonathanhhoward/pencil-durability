@@ -11,7 +11,7 @@ namespace PencilDurability {
         return std::isupper(c, std::locale{ "C" });
     }
 
-    bool isTextNotFound(std::size_t searchResult)
+    bool isNotFound(std::size_t searchResult)
     {
         return searchResult == std::string::npos;
     }

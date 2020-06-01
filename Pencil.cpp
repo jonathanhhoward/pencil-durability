@@ -26,7 +26,7 @@ namespace PencilDurability {
 
         auto pos = paper->rfind(text);
 
-        if (isTextNotFound(pos)) return;
+        if (isNotFound(pos)) return;
 
         paper->replace(pos, text.size(), buildEraseString(text));
     }
@@ -38,7 +38,7 @@ namespace PencilDurability {
         const std::string doubleSpace{ "  " };
         auto pos = paper->find(doubleSpace);
 
-        if (isTextNotFound(pos)) return;
+        if (isNotFound(pos)) return;
 
         auto off = isStartOfPaper(pos) ? 0 : 1;
         paper->replace(pos + off, text.size(), buildOverwriteString(text, pos + off));
