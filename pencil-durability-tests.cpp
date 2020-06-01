@@ -253,7 +253,7 @@ SCENARIO("a pencil can be sharpened")
         pencil1.attach(paper1);
 
         Pencil pencil2{ 4, 2 };
-        std::string paper2{"Tex             Tex"};
+        std::string paper2{ "Tex             Tex" };
         pencil2.attach(paper2);
 
         WHEN("a dull pencil is sharpened") {
@@ -273,10 +273,15 @@ SCENARIO("a pencil can be sharpened")
 
                 AND_WHEN("no length remains") {
                     pencil1.sharpen();
-                    pencil1.write("Text");
+                    pencil1.write("Texting");
+
+                    pencil2.sharpen();
+                    pencil2.overwrite("texting");
 
                     THEN("the pencil writes spaces") {
-                        CHECK(paper1 == "Tex Tex     ");
+                        CHECK(paper1 == "Tex Tex        ");
+                    } AND_THEN("the pencil does not overwrite") {
+                        CHECK(paper2 == "Tex Tex Tex     Tex");
                     }
                 }
             }
