@@ -225,16 +225,24 @@ SCENARIO("pencil points degrade with use")
 SCENARIO("a pencil can be sharpened")
 {
     GIVEN("a pencil with no length remaining") {
-        Pencil pencil{ 100, 0 };
-        std::string paper;
-        pencil.attach(paper);
+        Pencil pencil1{ 100, 0 };
+        std::string paper1;
+        pencil1.attach(paper1);
+
+        Pencil pencil2{ 100, 0 };
+        std::string paper2{ "text      text" };
+        pencil2.attach(paper2);
 
         WHEN("the pencil is instructed to sharpen") {
-            pencil.sharpen();
-            pencil.write("text");
+            pencil1.sharpen();
+            pencil1.write("text");
+
+            pencil2.sharpen();
+            pencil2.overwrite("text");
 
             THEN("it does not sharpen") {
-                CHECK(paper == "    ");
+                CHECK(paper1 == "    ");
+                CHECK(paper2 == "text      text");
             }
         }
     }

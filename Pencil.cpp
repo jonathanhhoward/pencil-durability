@@ -82,8 +82,10 @@ namespace PencilDurability {
     {
         std::string str;
 
-        for (std::size_t i = 0; i < text.size(); ++i)
-            str += point().overwrite(paper->at(off + i), text[i]);
+        for (std::size_t i = 0; i < text.size(); ++i) {
+            const char current = paper->at(off + i);
+            str += points.empty() ? current : point().overwrite(current, text[i]);
+        }
 
         return str;
     }
