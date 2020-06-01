@@ -248,27 +248,35 @@ SCENARIO("a pencil can be sharpened")
     }
 
     GIVEN("a pencil with point durability and length") {
-        Pencil pencil{ 4, 2 };
-        std::string paper;
-        pencil.attach(paper);
+        Pencil pencil1{ 4, 2 };
+        std::string paper1;
+        pencil1.attach(paper1);
+
+        Pencil pencil2{ 4, 2 };
+        std::string paper2{"Tex             Tex"};
+        pencil2.attach(paper2);
 
         WHEN("a dull pencil is sharpened") {
-            pencil.write("Text");
+            pencil1.write("Text");
+            CHECK(paper1 == "Tex ");
+            pencil1.sharpen();
+            pencil1.write("Text");
 
-            CHECK(paper == "Tex ");
-
-            pencil.sharpen();
-            pencil.write("Text");
+            pencil2.overwrite("Text");
+            CHECK(paper2 == "Tex Tex         Tex");
+            pencil2.sharpen();
+            pencil2.overwrite("Text");
 
             THEN("its point durability is restored and the length is shortened by one") {
-                CHECK(paper == "Tex Tex ");
+                CHECK(paper1 == "Tex Tex ");
+                CHECK(paper2 == "Tex Tex Tex     Tex");
 
                 AND_WHEN("no length remains") {
-                    pencil.sharpen();
-                    pencil.write("Text");
+                    pencil1.sharpen();
+                    pencil1.write("Text");
 
                     THEN("the pencil writes spaces") {
-                        CHECK(paper == "Tex Tex     ");
+                        CHECK(paper1 == "Tex Tex     ");
                     }
                 }
             }
