@@ -1,3 +1,7 @@
+/**
+ * (C) Copyright 2020, by Jonathan Howard
+ */
+
 #ifndef PENCIL_DURABILITY_POINT_H
 #define PENCIL_DURABILITY_POINT_H
 
