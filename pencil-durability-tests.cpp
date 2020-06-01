@@ -132,7 +132,7 @@ SCENARIO("pencils can overwrite text on paper")
             paper = "An apple   day keeps the doctor away";
             pencil.overwrite("An apple");
 
-            THEN("the overwritten text is unchanged") {
+            THEN("text overwritten by the space is unchanged") {
                 CHECK(paper == "An apple And@@p@@eps the doctor away");
             }
         }
