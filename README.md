@@ -3,17 +3,15 @@
 This repository contains my original solution to the [Pencil Durability Kata](https://github.com/PillarTechnology/kata-pencil-durability) for Pillar Technology.
 The source code is written in C++17 and the tests use the [Catch2](https://github.com/catchorg/Catch2) framework.
 
-### Required Dependencies
+### Navigating the source code
 
-- C++17 compiler included in the system PATH
-  - Linux and Mac may use GCC or Clang
-  - Windows may use MSVC, Cygwin, or MinGW
+The test code is at `./src/test/cpp/pencil-durability-tests.cpp`
 
-- Gradle - to build and run the tests
+The Catch2 framework code is at `./src/test/headers/catch.hpp` and `./src/test/cpp/catch-main.cpp`
 
-- Java - to run Gradle
+The starting point of the kata code is at `./src/main/headers/Pencil.h`
 
-- Catch2 - included with the source code
+The remainder of the kata code is dispersed between `./src/main/headers/` and `./src/main/cpp/`
 
 ### Build and run the tests
 
@@ -32,12 +30,22 @@ All tests passed (39 assertions in 7 test cases)
 
 You may have to scroll up to see this.
 
-### Navigating the source code
+### Required dependencies
+versions are minimums
 
-The test code is at `./src/test/cpp/pencil-durability-tests.cpp`
+- C++17 compiler included in the system PATH
+  - Linux
+    - GCC 7
+    - Clang 4
+  - Mac OS
+    - Apple Clang 10
+    - GCC 7
+  - Windows
+    - MSVC 19.10 (VS 2017 15.0)
+    - GCC 7 (Cygwin or MinGW)
 
-The Catch2 framework code is at `./src/test/headers/catch.hpp` and `./src/test/cpp/catch-main.cpp`
+- Gradle 5.5.1 - to build and run the tests
 
-The starting point of the kata code is at `./src/main/headers/Pencil.h`
+- JDK 8 - to run Gradle
 
-The remainder of the kata code is dispersed between `./src/main/headers/` and `./src/main/cpp/`
+- Catch2 - included with the source code
