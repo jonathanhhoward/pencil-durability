@@ -91,10 +91,12 @@ SCENARIO("pencils can overwrite text on paper")
             THEN("the first occurrence of empty space is filled in with a single space before the overwrite") {
                 CHECK(paper == "An onion a day       the doctor away");
 
-                pencil.overwrite("onion");
+                AND_WHEN("the pencil overwrites again") {
+                    pencil.overwrite("onion");
 
-                AND_THEN("the next empty space is filled in") {
-                    CHECK(paper == "An onion a day onion the doctor away");
+                    THEN("the next empty space is filled in") {
+                        CHECK(paper == "An onion a day onion the doctor away");
+                    }
                 }
             }
         }
