@@ -26,7 +26,8 @@ namespace PencilDurability {
         const char newline = '\n';
         const char overwrite = '@';
 
-        if (isDull() || next == space) return current;
+        if (isDull() || next == space)
+            return current;
 
         if (next != newline)
             degradeUsing(next);
