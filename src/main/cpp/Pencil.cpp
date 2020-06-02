@@ -5,9 +5,9 @@
 #include "Pencil.h"
 
 namespace PencilDurability {
-    Pencil::Pencil(int point, std::size_t length, int eraser)
-            :points{ length, Point{ point }},
-             eraser{ eraser },
+    Pencil::Pencil(int pointDurability, std::size_t length, int eraserDurability)
+            :points{ length, Point{ pointDurability }},
+             eraser{ eraserDurability },
              medium{ nullptr }
     {
     }
