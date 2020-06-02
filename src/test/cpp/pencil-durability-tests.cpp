@@ -15,9 +15,20 @@ SCENARIO("pencils are made independent of paper")
 
         WHEN("the pencil is used without paper") {
             THEN("the pencil throws an exception") {
-                REQUIRE_THROWS_WITH(pencil.write("text"), "invalid reference to medium");
                 REQUIRE_THROWS_WITH(pencil.erase("text"), "invalid reference to medium");
                 REQUIRE_THROWS_WITH(pencil.fillErased("text"), "invalid reference to medium");
+            }
+        }
+    }
+
+    GIVEN("a pencil and paper") {
+        Pencil pencil;
+        std::string paper;
+
+        WHEN("the pencil writes without paper attached") {
+            pencil.write("text");
+            THEN("no text is appended") {
+                CHECK(paper.empty());
             }
         }
     }

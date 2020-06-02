@@ -33,6 +33,7 @@ namespace PencilDurability {
         void sharpen();
 
     private:
+        bool isMediumNotAttached();
         void checkMediumExists();
         std::string buildWriteString(std::string_view text);
         std::string buildEraseString(std::string_view text);

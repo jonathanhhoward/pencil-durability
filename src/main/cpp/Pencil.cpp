@@ -19,7 +19,7 @@ namespace PencilDurability {
 
     void Pencil::write(std::string_view text)
     {
-        checkMediumExists();
+        if (isMediumNotAttached()) return;
 
         *medium += buildWriteString(text);
     }
@@ -53,6 +53,11 @@ namespace PencilDurability {
         if (points.empty()) return;
 
         points.pop_back();
+    }
+
+    bool Pencil::isMediumNotAttached()
+    {
+        return !medium;
     }
 
     void Pencil::checkMediumExists()
