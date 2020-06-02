@@ -8,31 +8,31 @@ namespace PencilDurability {
     Pencil::Pencil(int point, std::size_t length, int eraser)
             :points{ length, Point{ point }},
              eraser{ eraser },
-             paper{ nullptr }
+             medium{ nullptr }
     {
     }
 
-    void Pencil::attach(std::string& paperRef)
+    void Pencil::attach(std::string& mediumRef)
     {
-        paper = &paperRef;
+        medium = &mediumRef;
     }
 
     void Pencil::write(std::string_view text)
     {
         checkPaper();
 
-        *paper += buildWriteString(text);
+        *medium += buildWriteString(text);
     }
 
     void Pencil::erase(std::string_view text)
     {
         checkPaper();
 
-        auto pos = paper->rfind(text);
+        auto pos = medium->rfind(text);
 
         if (isNotFound(pos)) return;
 
-        paper->replace(pos, text.size(), buildEraseString(text));
+        medium->replace(pos, text.size(), buildEraseString(text));
     }
 
     void Pencil::overwrite(std::string_view text)
@@ -40,12 +40,12 @@ namespace PencilDurability {
         checkPaper();
 
         const std::string doubleSpace{ "  " };
-        auto pos = paper->find(doubleSpace);
+        auto pos = medium->find(doubleSpace);
 
         if (isNotFound(pos)) return;
 
         auto off = isStartOfPaper(pos) ? 0 : 1;
-        paper->replace(pos + off, text.size(), buildOverwriteString(text, pos + off));
+        medium->replace(pos + off, text.size(), buildOverwriteString(text, pos + off));
     }
 
     void Pencil::sharpen()
@@ -57,7 +57,7 @@ namespace PencilDurability {
 
     void Pencil::checkPaper()
     {
-        if (!paper) throw std::runtime_error{ "invalid reference to paper" };
+        if (!medium) throw std::runtime_error{ "invalid reference to paper" };
     }
 
     std::string Pencil::buildWriteString(std::string_view text)
@@ -87,7 +87,7 @@ namespace PencilDurability {
         std::string str;
 
         for (std::size_t i = 0; i < text.size(); ++i) {
-            const char current = paper->at(off + i);
+            const char current = medium->at(off + i);
             str += points.empty() ? current : point().overwrite(current, text[i]);
         }
 

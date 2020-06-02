@@ -24,7 +24,8 @@ namespace PencilDurability {
     public:
         // defaults approximate typical #2 pencil
         explicit Pencil(int point = 3000, std::size_t length = 40, int eraser = 1000);
-        void attach(std::string& paperRef);
+        // using the pencil without attaching a medium throws an exception
+        void attach(std::string& mediumRef);
         void write(std::string_view text);
         void erase(std::string_view text);
         void overwrite(std::string_view text);
@@ -38,7 +39,7 @@ namespace PencilDurability {
         Point& point();
         std::vector<Point> points;
         Eraser eraser;
-        std::string* paper;
+        std::string* medium;
     };
 }
 
