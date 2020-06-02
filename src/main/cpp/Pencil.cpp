@@ -60,11 +60,6 @@ namespace PencilDurability {
         return !medium;
     }
 
-    void Pencil::checkMediumExists()
-    {
-        if (!medium) throw std::runtime_error{ "invalid reference to medium" };
-    }
-
     std::string Pencil::buildWriteString(std::string_view text)
     {
         std::string str;

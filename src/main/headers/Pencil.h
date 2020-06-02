@@ -34,7 +34,6 @@ namespace PencilDurability {
 
     private:
         bool isMediumNotAttached();
-        void checkMediumExists();
         std::string buildWriteString(std::string_view text);
         std::string buildEraseString(std::string_view text);
         std::string buildFillString(std::string_view text, std::size_t off);
