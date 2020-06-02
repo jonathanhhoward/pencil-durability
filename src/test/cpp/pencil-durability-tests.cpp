@@ -15,7 +15,6 @@ SCENARIO("pencils are made independent of paper")
 
         WHEN("the pencil is used without paper") {
             THEN("the pencil throws an exception") {
-                REQUIRE_THROWS_WITH(pencil.fillErased("text"), "invalid reference to medium");
             }
         }
     }
@@ -32,12 +31,21 @@ SCENARIO("pencils are made independent of paper")
             }
         }
 
-        WHEN("the pencil erases without paper attached"){
+        WHEN("the pencil erases without paper attached") {
             paper = "text";
             pencil.erase("text");
 
             THEN("no text is erased") {
                 CHECK(paper == "text");
+            }
+        }
+
+        WHEN("the pencil fills empty space without paper attached") {
+            paper = "text      text";
+            pencil.fillErased("text");
+
+            THEN("the space is not filled") {
+                CHECK(paper == "text      text");
             }
         }
     }

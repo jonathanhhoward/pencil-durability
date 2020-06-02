@@ -37,7 +37,7 @@ namespace PencilDurability {
 
     void Pencil::fillErased(std::string_view text)
     {
-        checkMediumExists();
+        if (isMediumNotAttached()) return;
 
         const std::string doubleSpace{ "  " };
         auto pos = medium->find(doubleSpace);
