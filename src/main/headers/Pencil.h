@@ -2,7 +2,8 @@
  * (C) Copyright 2020, by Jonathan Howard
  *
  * This is my original solution to the Pencil Durability Kata for Pillar Technology
- * which describes a pencil with a point and an eraser that degrades with use.
+ * which describes a pencil with a point and an eraser that degrades when it writes
+ * new text, erases text, and fills in erased text.
  *
  * https://github.com/PillarTechnology/kata-pencil-durability
  */
@@ -28,7 +29,7 @@ namespace PencilDurability {
         void attach(std::string& mediumRef);
         void write(std::string_view text);
         void erase(std::string_view text);
-        void overwrite(std::string_view text);
+        void fillErased(std::string_view text);
         void sharpen();
 
     private:

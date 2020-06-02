@@ -35,7 +35,7 @@ namespace PencilDurability {
         medium->replace(pos, text.size(), buildEraseString(text));
     }
 
-    void Pencil::overwrite(std::string_view text)
+    void Pencil::fillErased(std::string_view text)
     {
         checkMediumExists();
 
