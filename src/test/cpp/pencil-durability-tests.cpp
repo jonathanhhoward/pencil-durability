@@ -10,15 +10,6 @@ using namespace PencilDurability;
 
 SCENARIO("pencils are made independent of paper")
 {
-    GIVEN("a pencil and no paper") {
-        Pencil pencil;
-
-        WHEN("the pencil is used without paper") {
-            THEN("the pencil throws an exception") {
-            }
-        }
-    }
-
     GIVEN("a pencil and paper") {
         Pencil pencil;
         std::string paper;
