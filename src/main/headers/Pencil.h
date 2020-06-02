@@ -32,7 +32,7 @@ namespace PencilDurability {
         void sharpen();
 
     private:
-        void checkPaper();
+        void checkMediumExists();
         std::string buildWriteString(std::string_view text);
         std::string buildEraseString(std::string_view text);
         std::string buildOverwriteString(std::string_view text, std::size_t off);

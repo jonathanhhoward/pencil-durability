@@ -15,9 +15,9 @@ SCENARIO("pencils are made independent of paper")
 
         WHEN("the pencil is used without paper") {
             THEN("the pencil throws an exception") {
-                REQUIRE_THROWS_WITH(pencil.write("text"), "invalid reference to paper");
-                REQUIRE_THROWS_WITH(pencil.erase("text"), "invalid reference to paper");
-                REQUIRE_THROWS_WITH(pencil.overwrite("text"), "invalid reference to paper");
+                REQUIRE_THROWS_WITH(pencil.write("text"), "invalid reference to medium");
+                REQUIRE_THROWS_WITH(pencil.erase("text"), "invalid reference to medium");
+                REQUIRE_THROWS_WITH(pencil.overwrite("text"), "invalid reference to medium");
             }
         }
     }

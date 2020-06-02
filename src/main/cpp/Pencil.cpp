@@ -19,14 +19,14 @@ namespace PencilDurability {
 
     void Pencil::write(std::string_view text)
     {
-        checkPaper();
+        checkMediumExists();
 
         *medium += buildWriteString(text);
     }
 
     void Pencil::erase(std::string_view text)
     {
-        checkPaper();
+        checkMediumExists();
 
         auto pos = medium->rfind(text);
 
@@ -37,7 +37,7 @@ namespace PencilDurability {
 
     void Pencil::overwrite(std::string_view text)
     {
-        checkPaper();
+        checkMediumExists();
 
         const std::string doubleSpace{ "  " };
         auto pos = medium->find(doubleSpace);
@@ -55,9 +55,9 @@ namespace PencilDurability {
         points.pop_back();
     }
 
-    void Pencil::checkPaper()
+    void Pencil::checkMediumExists()
     {
-        if (!medium) throw std::runtime_error{ "invalid reference to paper" };
+        if (!medium) throw std::runtime_error{ "invalid reference to medium" };
     }
 
     std::string Pencil::buildWriteString(std::string_view text)
