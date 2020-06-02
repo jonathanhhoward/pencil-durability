@@ -45,7 +45,7 @@ namespace PencilDurability {
         if (isNotFound(pos)) return;
 
         auto off = isStartOfPaper(pos) ? 0 : 1;
-        medium->replace(pos + off, text.size(), buildOverwriteString(text, pos + off));
+        medium->replace(pos + off, text.size(), buildFillString(text, pos + off));
     }
 
     void Pencil::sharpen()
@@ -82,7 +82,7 @@ namespace PencilDurability {
         return str;
     }
 
-    std::string Pencil::buildOverwriteString(std::string_view text, std::size_t off)
+    std::string Pencil::buildFillString(std::string_view text, std::size_t off)
     {
         std::string str;
 

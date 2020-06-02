@@ -37,7 +37,7 @@ namespace PencilDurability {
         void checkMediumExists();
         std::string buildWriteString(std::string_view text);
         std::string buildEraseString(std::string_view text);
-        std::string buildOverwriteString(std::string_view text, std::size_t off);
+        std::string buildFillString(std::string_view text, std::size_t off);
         Point& point();
         std::vector<Point> points;
         Eraser eraser;
