@@ -26,7 +26,7 @@ namespace PencilDurability {
 
     void Pencil::erase(std::string_view text)
     {
-        checkMediumExists();
+        if (isMediumNotAttached()) return;
 
         auto pos = medium->rfind(text);
 
