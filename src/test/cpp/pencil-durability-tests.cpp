@@ -40,6 +40,25 @@ SCENARIO("pencils are made independent of paper")
             }
         }
     }
+
+    GIVEN("a pencil and multiple papers") {
+        Pencil pencil;
+        std::string paper1;
+        std::string paper2;
+
+        WHEN("the pencil writes with different papers attached") {
+            pencil.attach(paper1);
+            pencil.write("text");
+
+            pencil.attach(paper2);
+            pencil.write("TEXT");
+
+            THEN("the text will be reflected on the respective paper") {
+                CHECK(paper1 == "text");
+                CHECK(paper2 == "TEXT");
+            }
+        }
+    }
 }
 
 SCENARIO("pencils can write text to paper")
