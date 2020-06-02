@@ -44,7 +44,7 @@ namespace PencilDurability {
 
         if (isNotFound(pos)) return;
 
-        auto off = isStartOfPaper(pos) ? 0 : 1;
+        auto off = isBeginMedium(pos) ? 0 : 1;
         medium->replace(pos + off, text.size(), buildFillString(text, pos + off));
     }
 

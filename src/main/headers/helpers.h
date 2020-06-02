@@ -13,7 +13,7 @@ namespace PencilDurability {
     bool isSpace(char c);
     bool isUpper(char c);
     bool isNotFound(std::size_t searchResult);
-    bool isStartOfPaper(std::size_t searchResult);
+    bool isBeginMedium(std::size_t searchResult);
     void pushFront(std::string& receiver, char pushed);
 }
 

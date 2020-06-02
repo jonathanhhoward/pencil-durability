@@ -20,7 +20,7 @@ namespace PencilDurability {
         return searchResult == std::string::npos;
     }
 
-    bool isStartOfPaper(std::size_t searchResult)
+    bool isBeginMedium(std::size_t searchResult)
     {
         return searchResult == 0;
     }
