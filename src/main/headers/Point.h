@@ -1,5 +1,7 @@
 /**
  * (C) Copyright 2020, by Jonathan Howard
+ *
+ * A Point has durability that degrades as it writes or overwrites characters.
  */
 
 #ifndef PENCIL_DURABILITY_POINT_H

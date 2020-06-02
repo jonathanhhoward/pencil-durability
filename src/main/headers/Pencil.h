@@ -2,9 +2,8 @@
  * (C) Copyright 2020, by Jonathan Howard
  *
  * This is my original solution to the Pencil Durability Kata for Pillar Technology
- * which describes a Pencil with a Point and an Eraser that degrades when it writes
- * text, erases text, and fills in erased text. A Pencil works with any medium that
- * holds a string, and it makes changes directly to that string.
+ * which describes a Pencil that has durability that degrades with use. A Pencil works
+ * directly on any medium that holds a string.
  *
  * https://github.com/PillarTechnology/kata-pencil-durability
  */

@@ -1,5 +1,7 @@
 /**
  * (C) Copyright 2020, by Jonathan Howard
+ *
+ * An Eraser has durability that degrades as it erases characters.
  */
 
 #ifndef PENCIL_DURABILITY_ERASER_H
