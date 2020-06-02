@@ -74,10 +74,9 @@ namespace PencilDurability {
     std::string Pencil::buildEraseString(std::string_view text)
     {
         std::string str;
-        const std::size_t front = 0;
 
         for (auto i = text.rbegin(); i != text.rend(); ++i)
-            str.insert(front, std::string{ eraser.erase(*i) });
+            pushFront(str, eraser.erase(*i));
 
         return str;
     }

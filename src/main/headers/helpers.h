@@ -14,6 +14,7 @@ namespace PencilDurability {
     bool isUpper(char c);
     bool isNotFound(std::size_t searchResult);
     bool isStartOfPaper(std::size_t searchResult);
+    void pushFront(std::string& receiver, char pushed);
 }
 
 #endif //PENCIL_DURABILITY_HELPERS_H
