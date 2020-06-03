@@ -29,7 +29,7 @@ namespace PencilDurability {
         void attach(std::string& mediumRef);
         void write(std::string_view text);
         void erase(std::string_view text);
-        void fillErased(std::string_view text);
+        void fillSpace(std::string_view text);
         void sharpen();
 
     private:

@@ -33,7 +33,7 @@ SCENARIO("pencils are made independent of paper")
 
         WHEN("the pencil fills empty space without paper attached") {
             paper = "text      text";
-            pencil.fillErased("text");
+            pencil.fillSpace("text");
 
             THEN("the space is not filled") {
                 CHECK(paper == "text      text");
@@ -128,13 +128,13 @@ SCENARIO("pencils can fill the space where text was erased from paper")
 
         WHEN("the pencil fills empty space") {
             paper = "An       a day       the doctor away";
-            pencil.fillErased("onion");
+            pencil.fillSpace("onion");
 
             THEN("the first occurrence of empty space is filled in with a single space before the text") {
                 CHECK(paper == "An onion a day       the doctor away");
 
                 AND_WHEN("the pencil fills again") {
-                    pencil.fillErased("onion");
+                    pencil.fillSpace("onion");
 
                     THEN("the next empty space is filled in") {
                         CHECK(paper == "An onion a day onion the doctor away");
@@ -145,7 +145,7 @@ SCENARIO("pencils can fill the space where text was erased from paper")
 
         WHEN("the pencil fills at the start of the paper") {
             paper = "   apple a day keeps the doctor away";
-            pencil.fillErased("An");
+            pencil.fillSpace("An");
 
             THEN("there is no space before the text") {
                 CHECK(paper == "An apple a day keeps the doctor away");
@@ -154,7 +154,7 @@ SCENARIO("pencils can fill the space where text was erased from paper")
 
         WHEN("the text to fill is larger than the space") {
             paper = "An       a day keeps the doctor away";
-            pencil.fillErased("artichoke");
+            pencil.fillSpace("artichoke");
 
             THEN("the space does not resize and overwritten characters will be replaced with '@'") {
                 CHECK(paper == "An artich@k@ay keeps the doctor away");
@@ -163,7 +163,7 @@ SCENARIO("pencils can fill the space where text was erased from paper")
 
         WHEN("there is no erasure") {
             paper = "An apple a day keeps the doctor away";
-            pencil.fillErased("onion");
+            pencil.fillSpace("onion");
 
             THEN("the nothing gets filled") {
                 CHECK(paper == "An apple a day keeps the doctor away");
@@ -172,7 +172,7 @@ SCENARIO("pencils can fill the space where text was erased from paper")
 
         WHEN("overwriting with a space") {
             paper = "An apple   day keeps the doctor away";
-            pencil.fillErased("An apple");
+            pencil.fillSpace("An apple");
 
             THEN("text overwritten by the space is unchanged") {
                 CHECK(paper == "An apple And@@p@@eps the doctor away");
@@ -181,7 +181,7 @@ SCENARIO("pencils can fill the space where text was erased from paper")
 
         WHEN("overwriting with a newline") {
             paper = "   apple a day keeps the doctor away";
-            pencil.fillErased("An\n\n");
+            pencil.fillSpace("An\n\n");
 
             THEN("spaces become newline and text becomes '@'") {
                 CHECK(paper == "An\n@pple a day keeps the doctor away");
@@ -207,7 +207,7 @@ SCENARIO("pencil points degrade with use")
 
         WHEN("the pencil fills with a dull point") {
             paper = "one     three";
-            pencil.fillErased("twenty");
+            pencil.fillSpace("twenty");
 
             THEN("the paper is not altered") {
                 CHECK(paper == "one     three");
@@ -226,7 +226,7 @@ SCENARIO("pencil points degrade with use")
 
         WHEN("the pencil writes a lowercase letter") {
             pencil1.write("texts");
-            pencil2.fillErased("texts");
+            pencil2.fillSpace("texts");
 
             THEN("the point durability degrades by one") {
                 CHECK(paper1 == "text ");
@@ -236,7 +236,7 @@ SCENARIO("pencil points degrade with use")
 
         WHEN("the pencil writes an uppercase letter") {
             pencil1.write("Text");
-            pencil2.fillErased("Text");
+            pencil2.fillSpace("Text");
 
             THEN("the point durability degrades by two") {
                 CHECK(paper1 == "Tex ");
@@ -246,7 +246,7 @@ SCENARIO("pencil points degrade with use")
 
         WHEN("the remaining point durability is one") {
             pencil1.write("texMex");
-            pencil2.fillErased("texMex");
+            pencil2.fillSpace("texMex");
 
             THEN("an uppercase letter may still be written") {
                 CHECK(paper1 == "texM  ");
@@ -256,7 +256,7 @@ SCENARIO("pencil points degrade with use")
 
         WHEN("the pencil writes whitespace") {
             pencil1.write("te \nxt");
-            pencil2.fillErased("te \nxt");
+            pencil2.fillSpace("te \nxt");
 
             THEN("the point does not degrade") {
                 CHECK(paper1 == "te \nxt");
@@ -282,7 +282,7 @@ SCENARIO("a pencil can be sharpened")
             pencil1.write("text");
 
             pencil2.sharpen();
-            pencil2.fillErased("text");
+            pencil2.fillSpace("text");
 
             THEN("it does not sharpen") {
                 CHECK(paper1 == "    ");
@@ -306,10 +306,10 @@ SCENARIO("a pencil can be sharpened")
             pencil1.sharpen();
             pencil1.write("Text");
 
-            pencil2.fillErased("Text");
+            pencil2.fillSpace("Text");
             CHECK(paper2 == "Tex Tex         Tex");
             pencil2.sharpen();
-            pencil2.fillErased("Text");
+            pencil2.fillSpace("Text");
 
             THEN("its point durability is restored and the length is shortened by one") {
                 CHECK(paper1 == "Tex Tex ");
@@ -320,7 +320,7 @@ SCENARIO("a pencil can be sharpened")
                     pencil1.write("Texting");
 
                     pencil2.sharpen();
-                    pencil2.fillErased("texting");
+                    pencil2.fillSpace("texting");
 
                     THEN("the pencil writes spaces") {
                         CHECK(paper1 == "Tex Tex        ");
