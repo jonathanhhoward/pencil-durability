@@ -25,7 +25,7 @@ The tests will build and run. When the tests complete you should see the followi
 
 ```
 ===============================================================================
-All tests passed (39 assertions in 7 test cases)
+All tests passed (41 assertions in 7 test cases)
 ```
 
 You may have to scroll up to see this.
