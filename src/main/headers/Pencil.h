@@ -16,8 +16,7 @@
 #include <string>
 #include <string_view>
 #include <vector>
-#include "Point.h"
-#include "Eraser.h"
+#include "Durable.h"
 #include "helpers.h"
 
 namespace PencilDurability {
