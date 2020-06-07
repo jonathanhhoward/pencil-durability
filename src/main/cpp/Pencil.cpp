@@ -72,7 +72,7 @@ namespace PencilDurability {
         const char space = ' ';
 
         for (char c : text)
-            str += points.empty() ? space : point().write(c);
+            str += points.empty() ? space : points.back().write(c);
 
         return str;
     }
@@ -83,7 +83,7 @@ namespace PencilDurability {
 
         for (std::size_t i = 0; i < text.size(); ++i) {
             const char current = medium->at(off + i);
-            str += points.empty() ? current : point().overwrite(current, text[i]);
+            str += points.empty() ? current : points.back().overwrite(current, text[i]);
         }
 
         return str;
@@ -97,10 +97,5 @@ namespace PencilDurability {
             pushFront(str, eraser.erase(*i));
 
         return str;
-    }
-
-    DurablePoint& Pencil::point()
-    {
-        return points.back();
     }
 }
