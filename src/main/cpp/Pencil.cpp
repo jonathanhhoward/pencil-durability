@@ -10,6 +10,13 @@ namespace PencilDurability {
              eraser{ eraserDurability },
              medium{ nullptr }
     {
+        point = points.empty() ? new DurablePoint{ 0 } : &points.back();
+    }
+
+    Pencil::~Pencil()
+    {
+        if (points.empty())
+            delete point;
     }
 
     void Pencil::attach(std::string& mediumRef)
@@ -59,6 +66,7 @@ namespace PencilDurability {
             return;
 
         points.pop_back();
+        point = points.empty() ? new DurablePoint{ 0 } : &points.back();
     }
 
     bool Pencil::isMediumNotAttached()
@@ -69,10 +77,9 @@ namespace PencilDurability {
     std::string Pencil::buildAppendString(std::string_view text)
     {
         std::string str;
-        const char space = ' ';
 
         for (char c : text)
-            str += points.empty() ? space : points.back().write(c);
+            str += point->write(c);
 
         return str;
     }
@@ -81,10 +88,8 @@ namespace PencilDurability {
     {
         std::string str;
 
-        for (std::size_t i = 0; i < text.size(); ++i) {
-            const char current = medium->at(off + i);
-            str += points.empty() ? current : points.back().overwrite(current, text[i]);
-        }
+        for (std::size_t i = 0; i < text.size(); ++i)
+            str += point->overwrite(medium->at(i + off), text[i]);
 
         return str;
     }
