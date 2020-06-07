@@ -36,9 +36,9 @@ namespace PencilDurability {
         std::string buildWriteString(std::string_view text);
         std::string buildEraseString(std::string_view text);
         std::string buildFillString(std::string_view text, std::size_t off);
-        Point& point();
-        std::vector<Point> points;
-        Eraser eraser;
+        DurablePoint& point();
+        std::vector<DurablePoint> points;
+        DurableEraser eraser;
         std::string* medium;
     };
 }

@@ -10,9 +10,9 @@
 #include "helpers.h"
 
 namespace PencilDurability {
-    class Durable {
+    class DurableBase {
     public:
-        explicit Durable(int durability);
+        explicit DurableBase(int durability);
 
     protected:
         [[nodiscard]] bool isDegraded() const;
@@ -22,9 +22,9 @@ namespace PencilDurability {
         int durability;
     };
 
-    class Point : public Durable {
+    class DurablePoint : public DurableBase {
     public:
-        explicit Point(int durability);
+        explicit DurablePoint(int durability);
         char write(char character);
         char overwrite(char current, char replacement);
 
@@ -32,9 +32,9 @@ namespace PencilDurability {
         void degradeUsing(char character);
     };
 
-    class Eraser : public Durable {
+    class DurableEraser : public DurableBase {
     public:
-        explicit Eraser(int durability);
+        explicit DurableEraser(int durability);
         char erase(char character);
     };
 }

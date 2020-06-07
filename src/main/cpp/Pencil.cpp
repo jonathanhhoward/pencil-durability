@@ -6,7 +6,7 @@
 
 namespace PencilDurability {
     Pencil::Pencil(int pointDurability, std::size_t length, int eraserDurability)
-            :points{ length, Point{ pointDurability }},
+            :points{ length, DurablePoint{ pointDurability }},
              eraser{ eraserDurability },
              medium{ nullptr }
     {
@@ -99,7 +99,7 @@ namespace PencilDurability {
         return str;
     }
 
-    Point& Pencil::point()
+    DurablePoint& Pencil::point()
     {
         return points.back();
     }

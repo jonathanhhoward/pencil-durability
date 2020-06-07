@@ -5,25 +5,25 @@
 #include "Durable.h"
 
 namespace PencilDurability {
-    Durable::Durable(int durability)
+    DurableBase::DurableBase(int durability)
             :durability{ durability } { }
 
-    bool Durable::isDegraded() const
+    bool DurableBase::isDegraded() const
     {
         return durability <= 0;
     }
 
-    void Durable::degradeBy(int count)
+    void DurableBase::degradeBy(int count)
     {
         durability -= count;
     }
 
-    Point::Point(int durability)
-            :Durable{ durability }
+    DurablePoint::DurablePoint(int durability)
+            :DurableBase{ durability }
     {
     }
 
-    char Point::write(char character)
+    char DurablePoint::write(char character)
     {
         const char space = ' ';
 
@@ -37,7 +37,7 @@ namespace PencilDurability {
         return character;
     }
 
-    char Point::overwrite(char current, char replacement)
+    char DurablePoint::overwrite(char current, char replacement)
     {
         const char space = ' ';
         const char newline = '\n';
@@ -52,7 +52,7 @@ namespace PencilDurability {
         return isSpace(current) ? replacement : overwrite;
     }
 
-    void Point::degradeUsing(char character)
+    void DurablePoint::degradeUsing(char character)
     {
         if (isUpper(character))
             degradeBy(2);
@@ -60,12 +60,12 @@ namespace PencilDurability {
             degradeBy(1);
     }
 
-    Eraser::Eraser(int durability)
-            :Durable{ durability }
+    DurableEraser::DurableEraser(int durability)
+            :DurableBase{ durability }
     {
     }
 
-    char Eraser::erase(char character)
+    char DurableEraser::erase(char character)
     {
         const char space = ' ';
 
