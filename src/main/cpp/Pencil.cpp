@@ -17,12 +17,27 @@ namespace PencilDurability {
         medium = &mediumRef;
     }
 
-    void Pencil::write(std::string_view text)
+    void Pencil::writeAppend(std::string_view text)
     {
         if (isMediumNotAttached())
             return;
 
-        *medium += buildWriteString(text);
+        *medium += buildAppendString(text);
+    }
+
+    void Pencil::writeFill(std::string_view text)
+    {
+        if (isMediumNotAttached())
+            return;
+
+        const std::string doubleSpace{ "  " };
+        auto pos = medium->find(doubleSpace);
+
+        if (isNotFound(pos))
+            return;
+
+        auto off = isBeginMedium(pos) ? 0 : 1;
+        medium->replace(pos + off, text.size(), buildFillString(text, pos + off));
     }
 
     void Pencil::erase(std::string_view text)
@@ -38,21 +53,6 @@ namespace PencilDurability {
         medium->replace(pos, text.size(), buildEraseString(text));
     }
 
-    void Pencil::fillSpace(std::string_view text)
-    {
-        if (isMediumNotAttached())
-            return;
-
-        const std::string doubleSpace{ "  " };
-        auto pos = medium->find(doubleSpace);
-
-        if (isNotFound(pos))
-            return;
-
-        auto off = isBeginMedium(pos) ? 0 : 1;
-        medium->replace(pos + off, text.size(), buildFillString(text, pos + off));
-    }
-
     void Pencil::sharpen()
     {
         if (points.empty())
@@ -66,23 +66,13 @@ namespace PencilDurability {
         return !medium;
     }
 
-    std::string Pencil::buildWriteString(std::string_view text)
+    std::string Pencil::buildAppendString(std::string_view text)
     {
         std::string str;
         const char space = ' ';
 
         for (char c : text)
             str += points.empty() ? space : point().write(c);
-
-        return str;
-    }
-
-    std::string Pencil::buildEraseString(std::string_view text)
-    {
-        std::string str;
-
-        for (auto i = text.rbegin(); i != text.rend(); ++i)
-            pushFront(str, eraser.erase(*i));
 
         return str;
     }
@@ -95,6 +85,16 @@ namespace PencilDurability {
             const char current = medium->at(off + i);
             str += points.empty() ? current : point().overwrite(current, text[i]);
         }
+
+        return str;
+    }
+
+    std::string Pencil::buildEraseString(std::string_view text)
+    {
+        std::string str;
+
+        for (auto i = text.rbegin(); i != text.rend(); ++i)
+            pushFront(str, eraser.erase(*i));
 
         return str;
     }
