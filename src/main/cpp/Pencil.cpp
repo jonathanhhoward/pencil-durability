@@ -100,7 +100,7 @@ namespace PencilDurability {
         std::string str;
 
         for (auto i = text.rbegin(); i != text.rend(); ++i)
-            pushFront(str, eraser.erase(*i));
+            str = eraser.erase(*i) + str;
 
         return str;
     }
