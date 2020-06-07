@@ -7,10 +7,11 @@
 namespace PencilDurability {
     Pencil::Pencil(int pointDurability, std::size_t length, int eraserDurability)
             :points{ length, DurablePoint{ pointDurability }},
+             point{ nullptr },
              eraser{ eraserDurability },
              medium{ nullptr }
     {
-        point = points.empty() ? new DurablePoint{ 0 } : &points.back();
+        setPoint();
     }
 
     Pencil::~Pencil()
@@ -66,7 +67,7 @@ namespace PencilDurability {
             return;
 
         points.pop_back();
-        point = points.empty() ? new DurablePoint{ 0 } : &points.back();
+        setPoint();
     }
 
     bool Pencil::isMediumNotAttached()
@@ -102,5 +103,10 @@ namespace PencilDurability {
             pushFront(str, eraser.erase(*i));
 
         return str;
+    }
+
+    void Pencil::setPoint()
+    {
+        point = points.empty() ? new DurablePoint{ 0 } : &points.back();
     }
 }
