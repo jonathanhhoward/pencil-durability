@@ -24,9 +24,4 @@ namespace PencilDurability {
     {
         return searchResult == 0;
     }
-
-    void pushFront(std::string& receiver, char pushed)
-    {
-        receiver.insert(0, std::string{ pushed });
-    }
 }
