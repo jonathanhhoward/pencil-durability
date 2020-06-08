@@ -17,7 +17,7 @@ SCENARIO("pencils are made independent of paper")
         WHEN("the pencil writes without paper attached") {
             pencil.writeAppend("text");
 
-            THEN("no text is appended") {
+            THEN("it should not append text") {
                 CHECK(paper.empty());
             }
         }
@@ -26,7 +26,7 @@ SCENARIO("pencils are made independent of paper")
             paper = "text";
             pencil.erase("text");
 
-            THEN("no text is erased") {
+            THEN("it should not erase text") {
                 CHECK(paper == "text");
             }
         }
@@ -35,7 +35,7 @@ SCENARIO("pencils are made independent of paper")
             paper = "text      text";
             pencil.writeFill("text");
 
-            THEN("the space is not filled") {
+            THEN("it should not fill text") {
                 CHECK(paper == "text      text");
             }
         }
@@ -53,7 +53,7 @@ SCENARIO("pencils are made independent of paper")
             pencil.attach(paper2);
             pencil.writeAppend("TEXT");
 
-            THEN("the text will be reflected on the respective paper") {
+            THEN("it should write text on the respective paper") {
                 CHECK(paper1 == "text");
                 CHECK(paper2 == "TEXT");
             }
@@ -71,13 +71,13 @@ SCENARIO("pencils can write text to paper")
         WHEN("the pencil writes text") {
             pencil.writeAppend("She sells sea shells");
 
-            THEN("the paper reflects the text that was written") {
+            THEN("it should write the text to the paper") {
                 CHECK(paper == "She sells sea shells");
 
                 AND_WHEN("additional text is written") {
                     pencil.writeAppend(" down by the sea shore");
 
-                    THEN("the text is appended to existing text on the paper") {
+                    THEN("it should append to existing text on the paper") {
                         CHECK(paper == "She sells sea shells down by the sea shore");
                     }
                 }
@@ -96,13 +96,13 @@ SCENARIO("pencils can erase text from paper")
         WHEN("a pencil erases text from the paper") {
             pencil.erase("chuck");
 
-            THEN("the last occurrence of the text is replaced with blank spaces") {
+            THEN("it should replace the last occurrence of the text with blank spaces") {
                 CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
 
                 AND_WHEN("when the text matches a substring") {
                     pencil.erase("chuck");
 
-                    THEN("the substring is replaced with blank spaces") {
+                    THEN("it should replace the substring blank spaces") {
                         CHECK(paper == "How much wood would a woodchuck chuck if a wood      could       wood?");
                     }
                 }
@@ -112,7 +112,7 @@ SCENARIO("pencils can erase text from paper")
         WHEN("the text is not found") {
             pencil.erase("duck");
 
-            THEN("the paper is not changed") {
+            THEN("it should not change the paper") {
                 CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could chuck wood?");
             }
         }
@@ -130,13 +130,13 @@ SCENARIO("pencils can fill the space where text was erased from paper")
             paper = "An       a day       the doctor away";
             pencil.writeFill("onion");
 
-            THEN("the first occurrence of empty space is filled in with a single space before the text") {
+            THEN("it should fill the first occurrence of empty space with a single space before the text") {
                 CHECK(paper == "An onion a day       the doctor away");
 
                 AND_WHEN("the pencil fills again") {
                     pencil.writeFill("onion");
 
-                    THEN("the next empty space is filled in") {
+                    THEN("it should fill the next empty space") {
                         CHECK(paper == "An onion a day onion the doctor away");
                     }
                 }
@@ -147,7 +147,7 @@ SCENARIO("pencils can fill the space where text was erased from paper")
             paper = "   apple a day keeps the doctor away";
             pencil.writeFill("An");
 
-            THEN("there is no space before the text") {
+            THEN("it should not put a space before the text") {
                 CHECK(paper == "An apple a day keeps the doctor away");
             }
         }
@@ -156,7 +156,7 @@ SCENARIO("pencils can fill the space where text was erased from paper")
             paper = "An       a day keeps the doctor away";
             pencil.writeFill("artichoke");
 
-            THEN("the space does not resize and overwritten characters will be replaced with '@'") {
+            THEN("it should not resize the space and should replace overwritten characters with '@'") {
                 CHECK(paper == "An artich@k@ay keeps the doctor away");
             }
         }
@@ -165,25 +165,25 @@ SCENARIO("pencils can fill the space where text was erased from paper")
             paper = "An apple a day keeps the doctor away";
             pencil.writeFill("onion");
 
-            THEN("the nothing gets filled") {
+            THEN("it should not change the paper") {
                 CHECK(paper == "An apple a day keeps the doctor away");
             }
         }
 
-        WHEN("overwriting with a space") {
+        WHEN("overwriting a character with a space") {
             paper = "An apple   day keeps the doctor away";
             pencil.writeFill("An apple");
 
-            THEN("text overwritten by the space is unchanged") {
+            THEN("it should not change the character") {
                 CHECK(paper == "An apple And@@p@@eps the doctor away");
             }
         }
 
-        WHEN("overwriting with a newline") {
+        WHEN("overwriting a character with a newline") {
             paper = "   apple a day keeps the doctor away";
             pencil.writeFill("An\n\n");
 
-            THEN("spaces become newline and text becomes '@'") {
+            THEN("it should change a space to a newline and text to '@'") {
                 CHECK(paper == "An\n@pple a day keeps the doctor away");
             }
         }
@@ -200,7 +200,7 @@ SCENARIO("pencil points degrade with use")
         WHEN("the pencil writes with a dull point") {
             pencil.writeAppend("text");
 
-            THEN("it only writes spaces") {
+            THEN("it should write spaces") {
                 CHECK(paper == "    ");
             }
         }
@@ -209,7 +209,7 @@ SCENARIO("pencil points degrade with use")
             paper = "one     three";
             pencil.writeFill("twenty");
 
-            THEN("the paper is not altered") {
+            THEN("it should not change the paper") {
                 CHECK(paper == "one     three");
             }
         }
@@ -228,7 +228,7 @@ SCENARIO("pencil points degrade with use")
             pencil1.writeAppend("texts");
             pencil2.writeFill("texts");
 
-            THEN("the point durability degrades by one") {
+            THEN("it should degrade the point durability by one") {
                 CHECK(paper1 == "text ");
                 CHECK(paper2 == "text text text");
             }
@@ -238,7 +238,7 @@ SCENARIO("pencil points degrade with use")
             pencil1.writeAppend("Text");
             pencil2.writeFill("Text");
 
-            THEN("the point durability degrades by two") {
+            THEN("it should degrade the point durability by two") {
                 CHECK(paper1 == "Tex ");
                 CHECK(paper2 == "text Tex  text");
             }
@@ -248,7 +248,7 @@ SCENARIO("pencil points degrade with use")
             pencil1.writeAppend("texMex");
             pencil2.writeFill("texMex");
 
-            THEN("an uppercase letter may still be written") {
+            THEN("it should still write an uppercase letter") {
                 CHECK(paper1 == "texM  ");
                 CHECK(paper2 == "text texM text");
             }
@@ -258,7 +258,7 @@ SCENARIO("pencil points degrade with use")
             pencil1.writeAppend("te \nxt");
             pencil2.writeFill("te \nxt");
 
-            THEN("the point does not degrade") {
+            THEN("it should not degrade the point") {
                 CHECK(paper1 == "te \nxt");
                 CHECK(paper2 == "text te \nx@ext");
             }
@@ -284,7 +284,7 @@ SCENARIO("a pencil can be sharpened")
             pencil2.sharpen();
             pencil2.writeFill("text");
 
-            THEN("it does not sharpen") {
+            THEN("it should not sharpen") {
                 CHECK(paper1 == "    ");
                 CHECK(paper2 == "text      text");
             }
@@ -311,7 +311,7 @@ SCENARIO("a pencil can be sharpened")
             pencil2.sharpen();
             pencil2.writeFill("Text");
 
-            THEN("its point durability is restored and the length is shortened by one") {
+            THEN("it should restore the point durability and shorten the length by one") {
                 CHECK(paper1 == "Tex Tex ");
                 CHECK(paper2 == "Tex Tex Tex     Tex");
 
@@ -322,9 +322,9 @@ SCENARIO("a pencil can be sharpened")
                     pencil2.sharpen();
                     pencil2.writeFill("texting");
 
-                    THEN("the pencil writes spaces") {
+                    THEN("it should write spaces") {
                         CHECK(paper1 == "Tex Tex        ");
-                    } AND_THEN("the pencil does not fill or overwrite") {
+                    } AND_THEN("it should not change the paper") {
                         CHECK(paper2 == "Tex Tex Tex     Tex");
                     }
                 }
@@ -343,7 +343,7 @@ SCENARIO("the pencil eraser degrades with use")
         WHEN("the eraser is used") {
             pencil.erase("text");
 
-            THEN("it will not erase") {
+            THEN("it should not erase") {
                 CHECK(paper == "text");
             }
         }
@@ -357,7 +357,7 @@ SCENARIO("the pencil eraser degrades with use")
         WHEN("the eraser is used") {
             pencil.erase("Buffalo Bill");
 
-            THEN("it removes characters in reverse order one durability point each not counting spaces") {
+            THEN("it should remove characters in reverse order one durability point each not counting spaces") {
                 CHECK(paper == "Buffal      ");
             }
         }
