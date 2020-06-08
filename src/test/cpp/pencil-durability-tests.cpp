@@ -22,21 +22,21 @@ SCENARIO("pencils are made independent of paper")
             }
         }
 
-        WHEN("the pencil erases without paper attached") {
-            paper = "text";
-            pencil.erase("text");
-
-            THEN("it should not erase text") {
-                CHECK(paper == "text");
-            }
-        }
-
         WHEN("the pencil fills empty space without paper attached") {
             paper = "text      text";
             pencil.writeFill("text");
 
             THEN("it should not fill text") {
                 CHECK(paper == "text      text");
+            }
+        }
+
+        WHEN("the pencil erases without paper attached") {
+            paper = "text";
+            pencil.erase("text");
+
+            THEN("it should not erase text") {
+                CHECK(paper == "text");
             }
         }
     }
@@ -81,39 +81,6 @@ SCENARIO("pencils can write text to paper")
                         CHECK(paper == "She sells sea shells down by the sea shore");
                     }
                 }
-            }
-        }
-    }
-}
-
-SCENARIO("pencils can erase text from paper")
-{
-    GIVEN("a pencil and paper with text") {
-        Pencil pencil;
-        std::string paper{ "How much wood would a woodchuck chuck if a woodchuck could chuck wood?" };
-        pencil.attach(paper);
-
-        WHEN("a pencil erases text from the paper") {
-            pencil.erase("chuck");
-
-            THEN("it should replace the last occurrence of the text with blank spaces") {
-                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
-
-                AND_WHEN("when the text matches a substring") {
-                    pencil.erase("chuck");
-
-                    THEN("it should replace the substring blank spaces") {
-                        CHECK(paper == "How much wood would a woodchuck chuck if a wood      could       wood?");
-                    }
-                }
-            }
-        }
-
-        WHEN("the text is not found") {
-            pencil.erase("duck");
-
-            THEN("it should not change the paper") {
-                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could chuck wood?");
             }
         }
     }
@@ -185,6 +152,39 @@ SCENARIO("pencils can fill the space where text was erased from paper")
 
             THEN("it should change a space to a newline and text to '@'") {
                 CHECK(paper == "An\n@pple a day keeps the doctor away");
+            }
+        }
+    }
+}
+
+SCENARIO("pencils can erase text from paper")
+{
+    GIVEN("a pencil and paper with text") {
+        Pencil pencil;
+        std::string paper{ "How much wood would a woodchuck chuck if a woodchuck could chuck wood?" };
+        pencil.attach(paper);
+
+        WHEN("a pencil erases text from the paper") {
+            pencil.erase("chuck");
+
+            THEN("it should replace the last occurrence of the text with blank spaces") {
+                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
+
+                AND_WHEN("when the text matches a substring") {
+                    pencil.erase("chuck");
+
+                    THEN("it should replace the substring blank spaces") {
+                        CHECK(paper == "How much wood would a woodchuck chuck if a wood      could       wood?");
+                    }
+                }
+            }
+        }
+
+        WHEN("the text is not found") {
+            pencil.erase("duck");
+
+            THEN("it should not change the paper") {
+                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could chuck wood?");
             }
         }
     }
