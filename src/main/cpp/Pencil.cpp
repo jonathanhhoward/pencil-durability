@@ -44,8 +44,9 @@ namespace PencilDurability {
         if (isNotFound(pos))
             return;
 
-        auto off = isBeginMedium(pos) ? 0 : 1;
-        medium->replace(pos + off, text.size(), buildFillString(text, pos + off));
+        std::string fill = isBeginMedium(pos) ? std::string{ text } : ' ' + std::string{ text };
+        std::string current = medium->substr(pos, fill.size());
+        medium->replace(pos, fill.size(), buildFillString(current, fill));
     }
 
     void Pencil::erase(std::string_view text)
@@ -85,12 +86,12 @@ namespace PencilDurability {
         return str;
     }
 
-    std::string Pencil::buildFillString(std::string_view text, std::size_t off)
+    std::string Pencil::buildFillString(std::string_view current, std::string_view replacement)
     {
         std::string str;
 
-        for (std::size_t i = 0; i < text.size(); ++i)
-            str += point->overwrite(medium->at(i + off), text[i]);
+        for (std::size_t i = 0; i < replacement.size(); ++i)
+            str += point->overwrite(current[i], replacement[i]);
 
         return str;
     }
