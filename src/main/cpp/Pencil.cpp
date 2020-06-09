@@ -27,7 +27,7 @@ namespace PencilDurability {
 
     void Pencil::writeAppend(std::string_view text)
     {
-        if (isMediumNotAttached())
+        if (!medium)
             return;
 
         *medium += buildAppendString(text);
@@ -35,7 +35,7 @@ namespace PencilDurability {
 
     void Pencil::writeFill(std::string_view text)
     {
-        if (isMediumNotAttached())
+        if (!medium)
             return;
 
         const std::string doubleSpace{ "  " };
@@ -51,7 +51,7 @@ namespace PencilDurability {
 
     void Pencil::erase(std::string_view text)
     {
-        if (isMediumNotAttached())
+        if (!medium)
             return;
 
         auto pos = medium->rfind(text);
@@ -69,11 +69,6 @@ namespace PencilDurability {
 
         points.pop_back();
         setPoint();
-    }
-
-    bool Pencil::isMediumNotAttached()
-    {
-        return !medium;
     }
 
     std::string Pencil::buildAppendString(std::string_view text)
