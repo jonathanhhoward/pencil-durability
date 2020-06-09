@@ -47,10 +47,10 @@ SCENARIO("pencils are made independent of paper")
         std::string paper2;
 
         WHEN("the pencil writes with different papers attached") {
-            pencil.attach(paper1);
+            pencil.attachRequired(paper1);
             pencil.writeAppend("text");
 
-            pencil.attach(paper2);
+            pencil.attachRequired(paper2);
             pencil.writeAppend("TEXT");
 
             THEN("it should write text on the respective paper") {
@@ -66,7 +66,7 @@ SCENARIO("pencils can write text to paper")
     GIVEN("a pencil and paper") {
         Pencil pencil;
         std::string paper;
-        pencil.attach(paper);
+        pencil.attachRequired(paper);
 
         WHEN("the pencil writes text") {
             pencil.writeAppend("She sells sea shells");
@@ -91,7 +91,7 @@ SCENARIO("pencils can fill the space where text was erased from paper")
     GIVEN("a pencil and paper with erasures") {
         Pencil pencil;
         std::string paper;
-        pencil.attach(paper);
+        pencil.attachRequired(paper);
 
         WHEN("the pencil fills empty space") {
             paper = "An       a day       the doctor away";
@@ -162,7 +162,7 @@ SCENARIO("pencils can erase text from paper")
     GIVEN("a pencil and paper with text") {
         Pencil pencil;
         std::string paper{ "How much wood would a woodchuck chuck if a woodchuck could chuck wood?" };
-        pencil.attach(paper);
+        pencil.attachRequired(paper);
 
         WHEN("a pencil erases text from the paper") {
             pencil.erase("chuck");
@@ -195,7 +195,7 @@ SCENARIO("pencil points degrade with use")
     GIVEN("a pencil point with no durability remaining") {
         Pencil pencil{ 0 };
         std::string paper;
-        pencil.attach(paper);
+        pencil.attachRequired(paper);
 
         WHEN("the pencil writes with a dull point") {
             pencil.writeAppend("text");
@@ -218,11 +218,11 @@ SCENARIO("pencil points degrade with use")
     GIVEN("a pencil point with durability remaining") {
         Pencil pencil1{ 4 };
         std::string paper1;
-        pencil1.attach(paper1);
+        pencil1.attachRequired(paper1);
 
         Pencil pencil2{ 4 };
         std::string paper2{ "text      text" };
-        pencil2.attach(paper2);
+        pencil2.attachRequired(paper2);
 
         WHEN("the pencil writes a lowercase letter") {
             pencil1.writeAppend("texts");
@@ -271,11 +271,11 @@ SCENARIO("a pencil can be sharpened")
     GIVEN("a pencil with no length remaining") {
         Pencil pencil1{ 100, 0 };
         std::string paper1;
-        pencil1.attach(paper1);
+        pencil1.attachRequired(paper1);
 
         Pencil pencil2{ 100, 0 };
         std::string paper2{ "text      text" };
-        pencil2.attach(paper2);
+        pencil2.attachRequired(paper2);
 
         WHEN("the pencil is instructed to sharpen") {
             pencil1.sharpen();
@@ -294,11 +294,11 @@ SCENARIO("a pencil can be sharpened")
     GIVEN("a pencil with point durability and length") {
         Pencil pencil1{ 4, 2 };
         std::string paper1;
-        pencil1.attach(paper1);
+        pencil1.attachRequired(paper1);
 
         Pencil pencil2{ 4, 2 };
         std::string paper2{ "Tex             Tex" };
-        pencil2.attach(paper2);
+        pencil2.attachRequired(paper2);
 
         WHEN("a dull pencil is sharpened") {
             pencil1.writeAppend("Text");
@@ -338,7 +338,7 @@ SCENARIO("the pencil eraser degrades with use")
     GIVEN("a pencil eraser with no durability remaining") {
         Pencil pencil{ 100, 100, 0 };
         std::string paper{ "text" };
-        pencil.attach(paper);
+        pencil.attachRequired(paper);
 
         WHEN("the eraser is used") {
             pencil.erase("text");
@@ -352,7 +352,7 @@ SCENARIO("the pencil eraser degrades with use")
     GIVEN("a pencil eraser with durability remaining") {
         Pencil pencil{ 100, 100, 5 };
         std::string paper{ "Buffalo Bill" };
-        pencil.attach(paper);
+        pencil.attachRequired(paper);
 
         WHEN("the eraser is used") {
             pencil.erase("Buffalo Bill");

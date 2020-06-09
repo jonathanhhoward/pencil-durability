@@ -20,7 +20,7 @@ namespace PencilDurability {
             delete point;
     }
 
-    void Pencil::attach(std::string& mediumRef)
+    void Pencil::attachRequired(std::string& mediumRef)
     {
         medium = &mediumRef;
     }
