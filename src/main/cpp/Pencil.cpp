@@ -11,7 +11,7 @@ namespace PencilDurability {
              eraser{ eraserDurability },
              medium{ nullptr }
     {
-        point = setPoint();
+        point = newPoint();
     }
 
     Pencil::~Pencil()
@@ -68,7 +68,7 @@ namespace PencilDurability {
             return;
 
         points.pop_back();
-        point = setPoint();
+        point = newPoint();
     }
 
     std::string Pencil::buildAppendString(std::string_view text)
@@ -101,7 +101,7 @@ namespace PencilDurability {
         return str;
     }
 
-    DurablePoint* Pencil::setPoint()
+    DurablePoint* Pencil::newPoint()
     {
         return points.empty() ? new DurablePoint{ 0 } : &points.back();
     }
