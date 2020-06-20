@@ -137,21 +137,21 @@ SCENARIO("pencils can fill the space where text was erased from paper")
             }
         }
 
-        WHEN("overwriting a character with a space") {
+        WHEN("overwriting a character with whitespace") {
             paper = "An apple   day keeps the doctor away";
-            pencil.writeFill("An apple");
+            pencil.writeFill("An apple\n");
 
             THEN("it should not change the character") {
                 CHECK(paper == "An apple And@@p@@eps the doctor away");
             }
         }
 
-        WHEN("overwriting a character with a newline") {
-            paper = "   apple a day keeps the doctor away";
-            pencil.writeFill("An\n\n");
+        WHEN("overwriting whitespace with whitespace") {
+            paper = "  \n\n";
+            pencil.writeFill(" \n \n");
 
-            THEN("it should change a space to a newline and text to '@'") {
-                CHECK(paper == "An\n@pple a day keeps the doctor away");
+            THEN("does not change anything") {
+                CHECK(paper == "  \n\n");
             }
         }
     }
@@ -260,7 +260,7 @@ SCENARIO("pencil points degrade with use")
 
             THEN("it should not degrade the point") {
                 CHECK(paper1 == "te \nxt");
-                CHECK(paper2 == "text te \nx@ext");
+                CHECK(paper2 == "text te  x@ext");
             }
         }
     }

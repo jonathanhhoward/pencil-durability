@@ -39,15 +39,12 @@ namespace PencilDurability {
 
     char DurablePoint::overwrite(char current, char replacement)
     {
-        const char space = ' ';
-        const char newline = '\n';
         const char overwrite = '@';
 
-        if (isDegraded() || replacement == space)
+        if (isDegraded() || isSpace(replacement))
             return current;
 
-        if (replacement != newline)
-            degradeUsing(replacement);
+        degradeUsing(replacement);
 
         return isSpace(current) ? replacement : overwrite;
     }
