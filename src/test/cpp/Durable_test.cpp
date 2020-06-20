@@ -120,3 +120,38 @@ TEST_CASE("a point with durability of 2")
         REQUIRE(point.overwrite(' ', 'A') == ' ');
     }
 }
+
+TEST_CASE("an eraser should turn non-space into space")
+{
+    DurableEraser eraser{ 10 };
+
+    REQUIRE(eraser.erase('x') == ' ');
+    REQUIRE(eraser.erase('\n') == ' ');
+}
+
+TEST_CASE("an eraser with durability of 0")
+{
+    DurableEraser eraser{ 0 };
+
+    SECTION("it should not turn non-space into space") {
+        REQUIRE(eraser.erase('x') == 'x');
+        REQUIRE(eraser.erase('\n') == '\n');
+    }
+}
+
+TEST_CASE("an eraser with durability of 1")
+{
+    DurableEraser eraser{ 1 };
+
+    SECTION("it should turn one character into space") {
+        REQUIRE(eraser.erase('x') == ' ');
+        REQUIRE(eraser.erase('x') == 'x');
+    }
+
+    SECTION("it should not degrade by erasing whitespace") {
+        REQUIRE(eraser.erase(' ') == ' ');
+        REQUIRE(eraser.erase('\n') == ' ');
+        REQUIRE(eraser.erase('x') == ' ');
+        REQUIRE(eraser.erase('x') == 'x');
+    }
+}
