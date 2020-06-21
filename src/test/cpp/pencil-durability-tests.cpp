@@ -150,7 +150,7 @@ SCENARIO("pencils can fill the space where text was erased from paper")
             paper = "  \n\n";
             pencil.writeFill(" \n \n");
 
-            THEN("does not change anything") {
+            THEN("it should not change whitespace") {
                 CHECK(paper == "  \n\n");
             }
         }
