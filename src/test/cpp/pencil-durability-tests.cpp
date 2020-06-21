@@ -190,6 +190,29 @@ SCENARIO("pencils can erase text from paper")
     }
 }
 
+SCENARIO("the pencil point degrades with use")
+{
+    GIVEN("a pencil point with durability remaining") {
+        Pencil pencil1{ 4 };
+        std::string paper1;
+        pencil1.attachRequired(paper1);
+
+        Pencil pencil2{ 4 };
+        std::string paper2{ "text      text" };
+        pencil2.attachRequired(paper2);
+
+        WHEN("writing text") {
+            pencil1.writeAppend("Text");
+            pencil2.writeFill("Text");
+
+            THEN("it should write from the left until it goes dull") {
+                CHECK(paper1 == "Tex ");
+                CHECK(paper2 == "text Tex  text");
+            }
+        }
+    }
+}
+
 SCENARIO("a pencil can be sharpened")
 {
     GIVEN("a pencil with no length remaining") {
