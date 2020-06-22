@@ -74,19 +74,11 @@ TEST_CASE("a pencil can be sharpened")
     }
 }
 
-SCENARIO("the pencil eraser degrades with use")
+TEST_CASE("the pencil eraser degrades with use")
 {
-    GIVEN("a pencil eraser with durability remaining") {
-        Pencil pencil{ 100, 100, 5 };
-        std::string paper{ "Buffalo Bill" };
-        pencil.attachRequired(paper);
+    Pencil pencil{ 100, 100, 5 };
 
-        WHEN("the eraser is used") {
-            pencil.erase("Buffalo Bill");
-
-            THEN("it should remove characters in reverse order one durability point each not counting spaces") {
-                CHECK(paper == "Buffal      ");
-            }
-        }
+    SECTION("it should remove characters in reverse order one durability point each not counting spaces") {
+        REQUIRE(pencil.buildEraseString("Buffalo Bill") == "Buffal      ");
     }
 }
