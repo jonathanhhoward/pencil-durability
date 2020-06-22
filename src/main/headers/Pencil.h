@@ -24,7 +24,6 @@ namespace PencilDurability {
     public:
         // defaults approximate typical #2 pencil
         explicit Pencil(int pointDurability = 3000, std::size_t length = 40, int eraserDurability = 1000);
-        ~Pencil();
         std::string write(std::string_view text);
         std::string overwrite(std::string_view oldText, std::string_view newText);
         std::string erase(std::string_view text);

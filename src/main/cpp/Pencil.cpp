@@ -14,12 +14,6 @@ namespace PencilDurability {
         point = newPoint();
     }
 
-    Pencil::~Pencil()
-    {
-        if (points.empty())
-            delete point;
-    }
-
     std::string Pencil::write(std::string_view text)
     {
         std::string str;
@@ -61,6 +55,6 @@ namespace PencilDurability {
 
     DurablePoint* Pencil::newPoint()
     {
-        return points.empty() ? new DurablePoint{ 0 } : &points.back();
+        return &points.back();
     }
 }
