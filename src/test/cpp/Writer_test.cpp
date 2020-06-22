@@ -103,24 +103,6 @@ SCENARIO("a writer can fill the space where text was erased from paper")
                 CHECK(paper == "An apple a day keeps the doctor away");
             }
         }
-
-        WHEN("overwriting a character with whitespace") {
-            paper = "An apple   day keeps the doctor away";
-            writer.writeFill("An apple\n");
-
-            THEN("it should not change the character") {
-                CHECK(paper == "An apple And@@p@@eps the doctor away");
-            }
-        }
-
-        WHEN("overwriting whitespace with whitespace") {
-            paper = "  \n\n";
-            writer.writeFill(" \n \n");
-
-            THEN("it should not change whitespace") {
-                CHECK(paper == "  \n\n");
-            }
-        }
     }
 }
 
