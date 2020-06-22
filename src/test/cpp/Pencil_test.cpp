@@ -12,7 +12,7 @@ TEST_CASE("a pencil writes a string")
 {
     Pencil pencil;
 
-    SECTION("it should return the string it receives"){
+    SECTION("it should return the string it receives") {
         REQUIRE(pencil.write("text") == "text");
     }
 }
@@ -21,31 +21,19 @@ TEST_CASE("a pencil overwrites with a string")
 {
     Pencil pencil;
 
-    SECTION("it should replace characters in a string according to DurablePoint"){
+    SECTION("it should replace characters in a string according to DurablePoint") {
         REQUIRE(pencil.overwrite("texting    ", "tex mex\nmix") == "@@@t@@@ mix");
     }
 }
 
-SCENARIO("the pencil point degrades with use")
+TEST_CASE("the pencil point degrades with use")
 {
-    GIVEN("a pencil point with durability remaining") {
-        Pencil pencil1{ 4 };
-        std::string paper1;
-        pencil1.attachRequired(paper1);
+    Pencil pencil1{ 4 };
+    Pencil pencil2{ 4 };
 
-        Pencil pencil2{ 4 };
-        std::string paper2{ "text      text" };
-        pencil2.attachRequired(paper2);
-
-        WHEN("writing text") {
-            pencil1.writeAppend("Text");
-            pencil2.writeFill("Text");
-
-            THEN("it should write from the left until it goes dull") {
-                CHECK(paper1 == "Tex ");
-                CHECK(paper2 == "text Tex  text");
-            }
-        }
+    SECTION("it should write from the left until it goes dull") {
+        REQUIRE(pencil1.write("Text") == "Tex ");
+        REQUIRE(pencil2.overwrite("    ", "Text") == "Tex ");
     }
 }
 
