@@ -19,48 +19,6 @@ namespace PencilDurability {
             delete point;
     }
 
-    void Pencil::attachRequired(std::string& mediumRef)
-    {
-        medium = &mediumRef;
-    }
-
-    void Pencil::writeAppend(std::string_view text)
-    {
-        if (!medium)
-            return;
-
-        *medium += write(text);
-    }
-
-    void Pencil::writeFill(std::string_view text)
-    {
-        if (!medium)
-            return;
-
-        const std::string doubleSpace{ "  " };
-        auto pos = medium->find(doubleSpace);
-
-        if (isNotFound(pos))
-            return;
-
-        std::string padText = isBeginMedium(pos) ? std::string{ text } : ' ' + std::string{ text };
-        std::string context = medium->substr(pos, padText.size());
-        medium->replace(pos, padText.size(), overwrite(context, padText));
-    }
-
-    void Pencil::erase(std::string_view text)
-    {
-        if (!medium)
-            return;
-
-        auto pos = medium->rfind(text);
-
-        if (isNotFound(pos))
-            return;
-
-        medium->replace(pos, text.size(), buildEraseString(text));
-    }
-
     void Pencil::sharpen()
     {
         if (points.empty())

@@ -25,10 +25,6 @@ namespace PencilDurability {
         // defaults approximate typical #2 pencil
         explicit Pencil(int pointDurability = 3000, std::size_t length = 40, int eraserDurability = 1000);
         ~Pencil();
-        void attachRequired(std::string& mediumRef);
-        void writeAppend(std::string_view text);
-        void writeFill(std::string_view text);
-        void erase(std::string_view text);
         void sharpen();
 
         std::string write(std::string_view text);
