@@ -40,8 +40,8 @@ TEST_CASE("the pencil point degrades with use")
 
 TEST_CASE("a pencil can be sharpened")
 {
-    SECTION("a pencil with length 0") {
-        Pencil pencil{ 100, 0 };
+    SECTION("a dull pencil") {
+        Pencil pencil{ 0 };
 
         SECTION("it should only write spaces") {
             REQUIRE(pencil.write("text") == "    ");
@@ -50,11 +50,6 @@ TEST_CASE("a pencil can be sharpened")
         SECTION("it should not overwrite") {
             REQUIRE(pencil.overwrite("    ", "text") == "    ");
         }
-
-        SECTION("it should not sharpen") {
-            pencil.sharpen();
-            REQUIRE(pencil.write("text") == "    ");
-        }
     }
 
     SECTION("a dull pencil with length 2") {
@@ -62,11 +57,11 @@ TEST_CASE("a pencil can be sharpened")
 
         REQUIRE(pencil.write("Text") == "Tex ");
 
-        SECTION("sharpening it should restore the point durability and shorten the length by one") {
+        SECTION("sharpening it should restore the point durability and shorten the length to 1") {
             pencil.sharpen();
             REQUIRE(pencil.write("Text") == "Tex ");
 
-            SECTION("sharpening it again should reduce the length to zero") {
+            SECTION("it should not sharpen again") {
                 pencil.sharpen();
                 REQUIRE(pencil.write("text") == "    ");
             }
