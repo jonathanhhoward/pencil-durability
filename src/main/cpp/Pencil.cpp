@@ -18,15 +18,6 @@ namespace PencilDurability {
             delete point;
     }
 
-    void Pencil::sharpen()
-    {
-        if (points.empty())
-            return;
-
-        points.pop_back();
-        point = newPoint();
-    }
-
     std::string Pencil::write(std::string_view text)
     {
         std::string str;
@@ -55,6 +46,15 @@ namespace PencilDurability {
             str = eraser.erase(*i) + str;
 
         return str;
+    }
+
+    void Pencil::sharpen()
+    {
+        if (points.empty())
+            return;
+
+        points.pop_back();
+        point = newPoint();
     }
 
     DurablePoint* Pencil::newPoint()
