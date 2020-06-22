@@ -22,7 +22,7 @@ namespace PencilDurability {
 
         std::string padText = isBeginMedium(pos) ? std::string{ text } : ' ' + std::string{ text };
         std::string context = medium->substr(pos, padText.size());
-        medium->replace(pos, padText.size(), pencil.buildFillString(context, padText));
+        medium->replace(pos, padText.size(), pencil.overwrite(context, padText));
     }
 
     void Writer::erase(std::string_view text)

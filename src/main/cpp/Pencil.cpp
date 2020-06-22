@@ -45,7 +45,7 @@ namespace PencilDurability {
 
         std::string padText = isBeginMedium(pos) ? std::string{ text } : ' ' + std::string{ text };
         std::string context = medium->substr(pos, padText.size());
-        medium->replace(pos, padText.size(), buildFillString(context, padText));
+        medium->replace(pos, padText.size(), overwrite(context, padText));
     }
 
     void Pencil::erase(std::string_view text)
@@ -80,12 +80,12 @@ namespace PencilDurability {
         return str;
     }
 
-    std::string Pencil::buildFillString(std::string_view context, std::string_view text)
+    std::string Pencil::overwrite(std::string_view oldText, std::string_view newText)
     {
         std::string str;
 
-        for (std::size_t i = 0; i < text.size(); ++i)
-            str += point->overwrite(context[i], text[i]);
+        for (std::size_t i = 0; i < newText.size(); ++i)
+            str += point->overwrite(oldText[i], newText[i]);
 
         return str;
     }

@@ -17,6 +17,15 @@ TEST_CASE("a pencil writes a string")
     }
 }
 
+TEST_CASE("a pencil overwrites with a string")
+{
+    Pencil pencil;
+
+    SECTION("it should replace characters in a string according to DurablePoint"){
+        REQUIRE(pencil.overwrite("texting    ", "tex mex\nmix") == "@@@t@@@ mix");
+    }
+}
+
 SCENARIO("the pencil point degrades with use")
 {
     GIVEN("a pencil point with durability remaining") {
