@@ -101,3 +101,36 @@ SCENARIO("a writer can fill the space where text was erased from paper")
         }
     }
 }
+
+SCENARIO("a writer can erase text from paper")
+{
+    GIVEN("a pencil and paper with text") {
+        Pencil pencil;
+        std::string paper{ "How much wood would a woodchuck chuck if a woodchuck could chuck wood?" };
+        Writer writer{ paper, pencil };
+
+        WHEN("a writer erases text from the paper") {
+            writer.erase("chuck");
+
+            THEN("it should replace the last occurrence of the text with blank spaces") {
+                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
+
+                AND_WHEN("when the text matches a substring") {
+                    writer.erase("chuck");
+
+                    THEN("it should replace the substring blank spaces") {
+                        CHECK(paper == "How much wood would a woodchuck chuck if a wood      could       wood?");
+                    }
+                }
+            }
+        }
+
+        WHEN("the writer erases text that is not found") {
+            writer.erase("duck");
+
+            THEN("it should not change the paper") {
+                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could chuck wood?");
+            }
+        }
+    }
+}

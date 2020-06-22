@@ -61,39 +61,6 @@ SCENARIO("pencils are made independent of paper")
     }
 }
 
-SCENARIO("pencils can erase text from paper")
-{
-    GIVEN("a pencil and paper with text") {
-        Pencil pencil;
-        std::string paper{ "How much wood would a woodchuck chuck if a woodchuck could chuck wood?" };
-        pencil.attachRequired(paper);
-
-        WHEN("a pencil erases text from the paper") {
-            pencil.erase("chuck");
-
-            THEN("it should replace the last occurrence of the text with blank spaces") {
-                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
-
-                AND_WHEN("when the text matches a substring") {
-                    pencil.erase("chuck");
-
-                    THEN("it should replace the substring blank spaces") {
-                        CHECK(paper == "How much wood would a woodchuck chuck if a wood      could       wood?");
-                    }
-                }
-            }
-        }
-
-        WHEN("the text is not found") {
-            pencil.erase("duck");
-
-            THEN("it should not change the paper") {
-                CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could chuck wood?");
-            }
-        }
-    }
-}
-
 SCENARIO("the pencil point degrades with use")
 {
     GIVEN("a pencil point with durability remaining") {

@@ -7,6 +7,7 @@ namespace PencilDurability {
     struct Writer {
         void writeAppend(std::string_view text);
         void writeFill(std::string_view text);
+        void erase(std::string_view text);
         std::string& medium;
         Pencil& pencil;
     };

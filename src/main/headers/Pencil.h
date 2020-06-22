@@ -33,8 +33,8 @@ namespace PencilDurability {
 
         std::string buildAppendString(std::string_view text);
         std::string buildFillString(std::string_view context, std::string_view text);
-    private:
         std::string buildEraseString(std::string_view text);
+    private:
         [[nodiscard]] DurablePoint* newPoint();
         std::vector<DurablePoint> points;
         DurablePoint* point;

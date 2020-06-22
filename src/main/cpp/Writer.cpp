@@ -18,4 +18,14 @@ namespace PencilDurability {
         std::string context = medium.substr(pos, padText.size());
         medium.replace(pos, padText.size(), pencil.buildFillString(context, padText));
     }
+
+    void Writer::erase(std::string_view text)
+    {
+        auto pos = medium.rfind(text);
+
+        if (isNotFound(pos))
+            return;
+
+        medium.replace(pos, text.size(), pencil.buildEraseString(text));
+    }
 }
