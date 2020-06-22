@@ -61,31 +61,6 @@ SCENARIO("pencils are made independent of paper")
     }
 }
 
-SCENARIO("pencils can write text to paper")
-{
-    GIVEN("a pencil and paper") {
-        Pencil pencil;
-        std::string paper;
-        pencil.attachRequired(paper);
-
-        WHEN("the pencil writes text") {
-            pencil.writeAppend("She sells sea shells");
-
-            THEN("it should write the text to the paper") {
-                CHECK(paper == "She sells sea shells");
-
-                AND_WHEN("additional text is written") {
-                    pencil.writeAppend(" down by the sea shore");
-
-                    THEN("it should append to existing text on the paper") {
-                        CHECK(paper == "She sells sea shells down by the sea shore");
-                    }
-                }
-            }
-        }
-    }
-}
-
 SCENARIO("pencils can fill the space where text was erased from paper")
 {
     GIVEN("a pencil and paper with erasures") {

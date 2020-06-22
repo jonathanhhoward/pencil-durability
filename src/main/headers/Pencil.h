@@ -31,8 +31,8 @@ namespace PencilDurability {
         void erase(std::string_view text);
         void sharpen();
 
-    private:
         std::string buildAppendString(std::string_view text);
+    private:
         std::string buildFillString(std::string_view context, std::string_view text);
         std::string buildEraseString(std::string_view text);
         [[nodiscard]] DurablePoint* newPoint();
