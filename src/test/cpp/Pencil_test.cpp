@@ -3,6 +3,7 @@
  */
 
 #include "catch.hpp"
+
 #include <string>
 #include "Pencil.h"
 
@@ -37,68 +38,37 @@ TEST_CASE("the pencil point degrades with use")
     }
 }
 
-SCENARIO("a pencil can be sharpened")
+TEST_CASE("a pencil can be sharpened")
 {
-    GIVEN("a pencil with no length remaining") {
-        Pencil pencil1{ 100, 0 };
-        std::string paper1;
-        pencil1.attachRequired(paper1);
+    SECTION("a pencil with length 0") {
+        Pencil pencil{ 100, 0 };
 
-        Pencil pencil2{ 100, 0 };
-        std::string paper2{ "text      text" };
-        pencil2.attachRequired(paper2);
+        SECTION("it should only write spaces") {
+            REQUIRE(pencil.write("text") == "    ");
+        }
 
-        WHEN("the pencil is instructed to sharpen") {
-            pencil1.sharpen();
-            pencil1.writeAppend("text");
+        SECTION("it should not overwrite") {
+            REQUIRE(pencil.overwrite("    ", "text") == "    ");
+        }
 
-            pencil2.sharpen();
-            pencil2.writeFill("text");
-
-            THEN("it should not sharpen") {
-                CHECK(paper1 == "    ");
-                CHECK(paper2 == "text      text");
-            }
+        SECTION("it should not sharpen") {
+            pencil.sharpen();
+            REQUIRE(pencil.write("text") == "    ");
         }
     }
 
-    GIVEN("a pencil with point durability and length") {
-        Pencil pencil1{ 4, 2 };
-        std::string paper1;
-        pencil1.attachRequired(paper1);
+    SECTION("a dull pencil with length 2") {
+        Pencil pencil{ 4, 2 };
 
-        Pencil pencil2{ 4, 2 };
-        std::string paper2{ "Tex             Tex" };
-        pencil2.attachRequired(paper2);
+        REQUIRE(pencil.write("Text") == "Tex ");
 
-        WHEN("a dull pencil is sharpened") {
-            pencil1.writeAppend("Text");
-            CHECK(paper1 == "Tex ");
-            pencil1.sharpen();
-            pencil1.writeAppend("Text");
+        SECTION("sharpening it should restore the point durability and shorten the length by one") {
+            pencil.sharpen();
+            REQUIRE(pencil.write("Text") == "Tex ");
 
-            pencil2.writeFill("Text");
-            CHECK(paper2 == "Tex Tex         Tex");
-            pencil2.sharpen();
-            pencil2.writeFill("Text");
-
-            THEN("it should restore the point durability and shorten the length by one") {
-                CHECK(paper1 == "Tex Tex ");
-                CHECK(paper2 == "Tex Tex Tex     Tex");
-
-                AND_WHEN("no length remains") {
-                    pencil1.sharpen();
-                    pencil1.writeAppend("Texting");
-
-                    pencil2.sharpen();
-                    pencil2.writeFill("texting");
-
-                    THEN("it should write spaces") {
-                        CHECK(paper1 == "Tex Tex        ");
-                    } AND_THEN("it should not change the paper") {
-                        CHECK(paper2 == "Tex Tex Tex     Tex");
-                    }
-                }
+            SECTION("sharpening it again should reduce the length to zero") {
+                pencil.sharpen();
+                REQUIRE(pencil.write("text") == "    ");
             }
         }
     }
