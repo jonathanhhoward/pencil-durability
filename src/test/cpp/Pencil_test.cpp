@@ -8,40 +8,6 @@
 
 using namespace PencilDurability;
 
-SCENARIO("pencils are made independent of paper")
-{
-    GIVEN("a pencil and paper") {
-        Pencil pencil;
-        std::string paper;
-
-        WHEN("the pencil writes without paper attached") {
-            pencil.writeAppend("text");
-
-            THEN("it should not append text") {
-                CHECK(paper.empty());
-            }
-        }
-
-        WHEN("the pencil fills empty space without paper attached") {
-            paper = "text      text";
-            pencil.writeFill("text");
-
-            THEN("it should not fill text") {
-                CHECK(paper == "text      text");
-            }
-        }
-
-        WHEN("the pencil erases without paper attached") {
-            paper = "text";
-            pencil.erase("text");
-
-            THEN("it should not erase text") {
-                CHECK(paper == "text");
-            }
-        }
-    }
-}
-
 SCENARIO("the pencil point degrades with use")
 {
     GIVEN("a pencil point with durability remaining") {
