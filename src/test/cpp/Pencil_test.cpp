@@ -8,6 +8,15 @@
 
 using namespace PencilDurability;
 
+TEST_CASE("a pencil writes a string")
+{
+    Pencil pencil;
+
+    SECTION("it should return the string it receives"){
+        REQUIRE(pencil.write("text") == "text");
+    }
+}
+
 SCENARIO("the pencil point degrades with use")
 {
     GIVEN("a pencil point with durability remaining") {

@@ -31,7 +31,7 @@ namespace PencilDurability {
         void erase(std::string_view text);
         void sharpen();
 
-        std::string buildAppendString(std::string_view text);
+        std::string write(std::string_view text);
         std::string buildFillString(std::string_view context, std::string_view text);
         std::string buildEraseString(std::string_view text);
     private:

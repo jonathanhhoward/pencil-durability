@@ -29,7 +29,7 @@ namespace PencilDurability {
         if (!medium)
             return;
 
-        *medium += buildAppendString(text);
+        *medium += write(text);
     }
 
     void Pencil::writeFill(std::string_view text)
@@ -70,7 +70,7 @@ namespace PencilDurability {
         point = newPoint();
     }
 
-    std::string Pencil::buildAppendString(std::string_view text)
+    std::string Pencil::write(std::string_view text)
     {
         std::string str;
 
