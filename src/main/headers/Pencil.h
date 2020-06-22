@@ -30,7 +30,6 @@ namespace PencilDurability {
         void sharpen();
 
     private:
-        [[nodiscard]] DurablePoint* newPoint();
         std::vector<DurablePoint> points;
         DurablePoint* point;
         DurableEraser eraser;
