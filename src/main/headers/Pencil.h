@@ -29,7 +29,7 @@ namespace PencilDurability {
 
         std::string write(std::string_view text);
         std::string overwrite(std::string_view oldText, std::string_view newText);
-        std::string buildEraseString(std::string_view text);
+        std::string erase(std::string_view text);
     private:
         [[nodiscard]] DurablePoint* newPoint();
         std::vector<DurablePoint> points;

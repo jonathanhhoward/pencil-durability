@@ -32,7 +32,7 @@ namespace PencilDurability {
         if (isNotFound(pos))
             return;
 
-        medium->replace(pos, text.size(), pencil.buildEraseString(text));
+        medium->replace(pos, text.size(), pencil.erase(text));
     }
 
     void Writer::changeMedium(std::string& mediumRef)

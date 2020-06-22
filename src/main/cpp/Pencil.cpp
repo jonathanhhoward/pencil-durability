@@ -47,7 +47,7 @@ namespace PencilDurability {
         return str;
     }
 
-    std::string Pencil::buildEraseString(std::string_view text)
+    std::string Pencil::erase(std::string_view text)
     {
         std::string str;
 

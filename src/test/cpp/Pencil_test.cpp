@@ -79,6 +79,6 @@ TEST_CASE("the pencil eraser degrades with use")
     Pencil pencil{ 100, 100, 5 };
 
     SECTION("it should remove characters in reverse order one durability point each not counting spaces") {
-        REQUIRE(pencil.buildEraseString("Buffalo Bill") == "Buffal      ");
+        REQUIRE(pencil.erase("Buffalo Bill") == "Buffal      ");
     }
 }
