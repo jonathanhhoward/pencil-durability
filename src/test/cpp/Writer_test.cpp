@@ -6,7 +6,29 @@
 
 using namespace PencilDurability;
 
-TEST_CASE("a writer writes on paper with a pencil")
+SCENARIO("a writer uses many sheets of paper")
+{
+    GIVEN("multiple sheets of paper") {
+        Pencil pencil;
+        std::string paper1;
+        std::string paper2;
+        Writer writer{ paper1, pencil };
+
+        WHEN("the writer writes text to different papers") {
+            writer.writeAppend("text");
+
+            writer.changeMedium(paper2);
+            writer.writeAppend("TEXT");
+
+            THEN("it should reflect the text on the respective paper") {
+                CHECK(paper1 == "text");
+                CHECK(paper2 == "TEXT");
+            }
+        }
+    }
+}
+
+SCENARIO("a writer writes on paper with a pencil")
 {
     GIVEN("a pencil and paper") {
         Pencil pencil;

@@ -4,11 +4,15 @@
 #include "Pencil.h"
 
 namespace PencilDurability {
-    struct Writer {
+    class Writer {
+    public:
+        Writer(std::string& mediumRef, Pencil& pencilRef);
         void writeAppend(std::string_view text);
         void writeFill(std::string_view text);
         void erase(std::string_view text);
-        std::string& medium;
+        void changeMedium(std::string& mediumRef);
+    private:
+        std::string* medium;
         Pencil& pencil;
     };
 }

@@ -40,25 +40,6 @@ SCENARIO("pencils are made independent of paper")
             }
         }
     }
-
-    GIVEN("a pencil and multiple papers") {
-        Pencil pencil;
-        std::string paper1;
-        std::string paper2;
-
-        WHEN("the pencil writes with different papers attached") {
-            pencil.attachRequired(paper1);
-            pencil.writeAppend("text");
-
-            pencil.attachRequired(paper2);
-            pencil.writeAppend("TEXT");
-
-            THEN("it should write text on the respective paper") {
-                CHECK(paper1 == "text");
-                CHECK(paper2 == "TEXT");
-            }
-        }
-    }
 }
 
 SCENARIO("the pencil point degrades with use")
