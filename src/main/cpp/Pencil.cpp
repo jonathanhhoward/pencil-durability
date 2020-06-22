@@ -8,8 +8,7 @@ namespace PencilDurability {
     Pencil::Pencil(int pointDurability, std::size_t length, int eraserDurability)
             :points(length, DurablePoint{ pointDurability }),
              point{ newPoint() },
-             eraser{ eraserDurability },
-             medium{ nullptr }
+             eraser{ eraserDurability }
     {
     }
 

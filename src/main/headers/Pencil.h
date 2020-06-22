@@ -35,7 +35,6 @@ namespace PencilDurability {
         std::vector<DurablePoint> points;
         DurablePoint* point;
         DurableEraser eraser;
-        std::string* medium;
     };
 }
 
