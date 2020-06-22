@@ -40,8 +40,8 @@ TEST_CASE("the pencil point degrades with use")
 
 TEST_CASE("a pencil can be sharpened")
 {
-    SECTION("a dull pencil") {
-        Pencil pencil{ 0 };
+    SECTION("constructing a pencil with length 0") {
+        Pencil pencil{ 100, 0 };
 
         SECTION("it should only write spaces") {
             REQUIRE(pencil.write("text") == "    ");

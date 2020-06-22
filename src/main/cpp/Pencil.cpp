@@ -9,6 +9,8 @@ namespace PencilDurability {
             :points(length, DurablePoint{ pointDurability }),
              eraser{ eraserDurability }
     {
+        if (points.empty())
+            points.emplace_back(DurablePoint{ 0 });
         point = newPoint();
     }
 
