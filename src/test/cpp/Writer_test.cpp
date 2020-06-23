@@ -32,6 +32,26 @@ SCENARIO("a writer uses many sheets of paper")
     }
 }
 
+SCENARIO("a writer uses many pencils")
+{
+    GIVEN("multiple pencils") {
+        Pencil pencil{ 4 };
+        Pencil pencil2;
+        std::string paper;
+        Writer writer{ paper, pencil };
+
+        WHEN("the writer changes pencils") {
+            writer.appendMedium("text");
+            writer.reassignPencil(pencil2);
+            writer.appendMedium(" text");
+
+            THEN("it should continue to write with the same paper") {
+                CHECK(paper == "text text");
+            }
+        }
+    }
+}
+
 SCENARIO("a writer writes on paper with a pencil")
 {
     GIVEN("a pencil and paper") {
