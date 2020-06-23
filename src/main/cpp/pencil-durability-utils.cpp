@@ -2,7 +2,7 @@
  * (C) Copyright 2020, by Jonathan Howard
  */
 
-#include "helpers.h"
+#include "pencil-durability-utils.h"
 
 namespace PencilDurability {
     bool isSpace(char c)

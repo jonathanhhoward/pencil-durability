@@ -11,6 +11,7 @@
 #define PENCIL_DURABILITY_WRITER_H
 
 #include "Pencil.h"
+#include "pencil-durability-utils.h"
 
 namespace PencilDurability {
     class Writer {

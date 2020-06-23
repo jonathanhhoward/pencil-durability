@@ -7,7 +7,7 @@
 #ifndef PENCIL_DURABILITY_DURABLE_H
 #define PENCIL_DURABILITY_DURABLE_H
 
-#include "helpers.h"
+#include "pencil-durability-utils.h"
 
 namespace PencilDurability {
     class DurableBase {

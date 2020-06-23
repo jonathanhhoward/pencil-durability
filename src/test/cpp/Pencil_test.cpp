@@ -3,8 +3,6 @@
  */
 
 #include "catch.hpp"
-
-#include <string>
 #include "Pencil.h"
 
 using namespace PencilDurability;

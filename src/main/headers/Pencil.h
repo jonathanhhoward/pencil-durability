@@ -7,13 +7,8 @@
 #ifndef PENCIL_DURABILITY_PENCIL_H
 #define PENCIL_DURABILITY_PENCIL_H
 
-#include <cstddef>
-#include <stdexcept>
-#include <string>
-#include <string_view>
-#include <vector>
 #include "Durable.h"
-#include "helpers.h"
+#include "pencil-durability-utils.h"
 
 namespace PencilDurability {
     class Pencil {
