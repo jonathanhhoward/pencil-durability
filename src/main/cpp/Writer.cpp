@@ -19,7 +19,7 @@ namespace PencilDurability {
     void Writer::fillInMedium(std::string_view text)
     {
         const std::string doubleSpace{ "  " };
-        auto pos = medium->find(doubleSpace);
+        const auto pos = medium->find(doubleSpace);
 
         if (isNotFound(pos))
             return;
@@ -31,7 +31,7 @@ namespace PencilDurability {
 
     void Writer::eraseFromMedium(std::string_view text)
     {
-        auto pos = medium->rfind(text);
+        const auto pos = medium->rfind(text);
 
         if (isNotFound(pos))
             return;
