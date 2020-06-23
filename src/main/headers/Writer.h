@@ -3,8 +3,9 @@
  *
  * This is my original solution to the Pencil Durability Kata for Pillar Technology
  * which describes a Pencil that has durability that degrades with use.
- *
  * https://github.com/PillarTechnology/kata-pencil-durability
+ *
+ * A Writer directs a pencil to make changes to a medium.
  */
 
 #ifndef PENCIL_DURABILITY_WRITER_H
