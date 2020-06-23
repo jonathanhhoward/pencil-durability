@@ -24,7 +24,7 @@ namespace PencilDurability {
     public:
         explicit DurablePoint(int durability);
         char write(char character);
-        char overwrite(char current, char replacement);
+        char overwrite(char oldChar, char newChar);
 
     private:
         void degradeUsing(char character);
