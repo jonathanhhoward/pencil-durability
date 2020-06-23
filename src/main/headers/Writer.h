@@ -1,3 +1,12 @@
+/**
+ * (C) Copyright 2020, by Jonathan Howard
+ *
+ * This is my original solution to the Pencil Durability Kata for Pillar Technology
+ * which describes a Pencil that has durability that degrades with use.
+ *
+ * https://github.com/PillarTechnology/kata-pencil-durability
+ */
+
 #ifndef PENCIL_DURABILITY_WRITER_H
 #define PENCIL_DURABILITY_WRITER_H
 

@@ -1,3 +1,7 @@
+/**
+ * (C) Copyright 2020, by Jonathan Howard
+ */
+
 #include "catch.hpp"
 
 #include <string>
