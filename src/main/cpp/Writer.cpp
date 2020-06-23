@@ -11,12 +11,12 @@ namespace PencilDurability {
     {
     }
 
-    void Writer::appendMedium(std::string_view text)
+    void Writer::appendToMedium(std::string_view text)
     {
         *medium += pencil->write(text);
     }
 
-    void Writer::fillMedium(std::string_view text)
+    void Writer::fillInMedium(std::string_view text)
     {
         const std::string doubleSpace{ "  " };
         auto pos = medium->find(doubleSpace);
@@ -29,7 +29,7 @@ namespace PencilDurability {
         medium->replace(pos, newText.size(), pencil->overwrite(oldText, newText));
     }
 
-    void Writer::eraseMedium(std::string_view text)
+    void Writer::eraseFromMedium(std::string_view text)
     {
         auto pos = medium->rfind(text);
 

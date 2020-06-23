@@ -16,10 +16,10 @@ SCENARIO("a writer uses many sheets of paper")
         Writer writer{ paper1, pencil };
 
         WHEN("the writer writes text to different papers") {
-            writer.appendMedium("text");
+            writer.appendToMedium("text");
 
             writer.reassignMedium(paper2);
-            writer.appendMedium("TEXT");
+            writer.appendToMedium("TEXT");
 
             THEN("it should reflect the text on the respective paper") {
                 CHECK(paper1 == "text");
@@ -38,9 +38,9 @@ SCENARIO("a writer uses many pencils")
         Writer writer{ paper, pencil };
 
         WHEN("the writer changes pencils") {
-            writer.appendMedium("text");
+            writer.appendToMedium("text");
             writer.reassignPencil(pencil2);
-            writer.appendMedium(" text");
+            writer.appendToMedium(" text");
 
             THEN("it should continue to write with the same paper") {
                 CHECK(paper == "text text");
@@ -57,13 +57,13 @@ SCENARIO("a writer writes on paper with a pencil")
         Writer writer{ paper, pencil };
 
         WHEN("the writer writes text to paper with a pencil") {
-            writer.appendMedium("She sells sea shells");
+            writer.appendToMedium("She sells sea shells");
 
             THEN("the text should be reflected on the paper") {
                 CHECK(paper == "She sells sea shells");
 
                 AND_WHEN("additional text is written") {
-                    writer.appendMedium(" down by the sea shore");
+                    writer.appendToMedium(" down by the sea shore");
 
                     THEN("the text should append to existing text on the paper") {
                         CHECK(paper == "She sells sea shells down by the sea shore");
@@ -83,13 +83,13 @@ SCENARIO("a writer can fill the space where text was erased from paper")
 
         WHEN("the writer fills empty space") {
             paper = "An       a day       the doctor away";
-            writer.fillMedium("onion");
+            writer.fillInMedium("onion");
 
             THEN("it should fill the first occurrence of empty space with a single space before the text") {
                 CHECK(paper == "An onion a day       the doctor away");
 
                 AND_WHEN("the writer fills again") {
-                    writer.fillMedium("onion");
+                    writer.fillInMedium("onion");
 
                     THEN("it should fill the next empty space") {
                         CHECK(paper == "An onion a day onion the doctor away");
@@ -100,7 +100,7 @@ SCENARIO("a writer can fill the space where text was erased from paper")
 
         WHEN("the writer fills at the start of the paper") {
             paper = "   apple a day keeps the doctor away";
-            writer.fillMedium("An");
+            writer.fillInMedium("An");
 
             THEN("it should not put a space before the text") {
                 CHECK(paper == "An apple a day keeps the doctor away");
@@ -109,7 +109,7 @@ SCENARIO("a writer can fill the space where text was erased from paper")
 
         WHEN("the text to fill is larger than the space") {
             paper = "An       a day keeps the doctor away";
-            writer.fillMedium("artichoke");
+            writer.fillInMedium("artichoke");
 
             THEN("it should not resize the space and should replace overwritten characters with '@'") {
                 CHECK(paper == "An artich@k@ay keeps the doctor away");
@@ -118,7 +118,7 @@ SCENARIO("a writer can fill the space where text was erased from paper")
 
         WHEN("there is no erasure") {
             paper = "An apple a day keeps the doctor away";
-            writer.fillMedium("onion");
+            writer.fillInMedium("onion");
 
             THEN("it should not change the paper") {
                 CHECK(paper == "An apple a day keeps the doctor away");
@@ -135,13 +135,13 @@ SCENARIO("a writer can erase text from paper")
         Writer writer{ paper, pencil };
 
         WHEN("a writer erases text from the paper") {
-            writer.eraseMedium("chuck");
+            writer.eraseFromMedium("chuck");
 
             THEN("it should replace the last occurrence of the text with blank spaces") {
                 CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could       wood?");
 
                 AND_WHEN("when the text matches a substring") {
-                    writer.eraseMedium("chuck");
+                    writer.eraseFromMedium("chuck");
 
                     THEN("it should replace the substring blank spaces") {
                         CHECK(paper == "How much wood would a woodchuck chuck if a wood      could       wood?");
@@ -151,7 +151,7 @@ SCENARIO("a writer can erase text from paper")
         }
 
         WHEN("the writer erases text that is not found") {
-            writer.eraseMedium("duck");
+            writer.eraseFromMedium("duck");
 
             THEN("it should not change the paper") {
                 CHECK(paper == "How much wood would a woodchuck chuck if a woodchuck could chuck wood?");
