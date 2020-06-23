@@ -17,7 +17,6 @@ SCENARIO("a writer uses many sheets of paper")
 
         WHEN("the writer writes text to different papers") {
             writer.appendToMedium("text");
-
             writer.reassignMedium(paper2);
             writer.appendToMedium("TEXT");
 
