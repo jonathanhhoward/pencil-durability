@@ -23,6 +23,7 @@ namespace PencilDurability {
         void eraseFromMedium(std::string_view text);
         void reassignMedium(std::string& mediumRef);
         void reassignPencil(Pencil& pencilRef);
+
     private:
         std::string* medium;
         Pencil* pencil;
