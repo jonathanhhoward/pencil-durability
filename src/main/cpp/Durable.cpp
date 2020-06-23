@@ -6,7 +6,9 @@
 
 namespace PencilDurability {
     DurableBase::DurableBase(int durability)
-            :durability{ durability } { }
+            :durability{ durability }
+    {
+    }
 
     bool DurableBase::isDegraded() const
     {

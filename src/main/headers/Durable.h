@@ -11,10 +11,8 @@
 
 namespace PencilDurability {
     class DurableBase {
-    public:
-        explicit DurableBase(int durability);
-
     protected:
+        explicit DurableBase(int durability);
         [[nodiscard]] bool isDegraded() const;
         void degradeBy(int count);
 
