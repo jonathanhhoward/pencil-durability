@@ -31,10 +31,10 @@ SCENARIO("a writer uses many sheets of paper")
 SCENARIO("a writer uses many pencils")
 {
     GIVEN("multiple pencils") {
-        Pencil pencil{ 4 };
+        Pencil pencil1{ 4 };
         Pencil pencil2;
         std::string paper;
-        Writer writer{ paper, pencil };
+        Writer writer{ paper, pencil1 };
 
         WHEN("the writer changes pencils") {
             writer.appendToMedium("text");
