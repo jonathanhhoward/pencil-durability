@@ -16,10 +16,10 @@ namespace PencilDurability {
     class Writer {
     public:
         Writer(std::string& mediumRef, Pencil& pencilRef);
-        void writeAppend(std::string_view text);
-        void writeFill(std::string_view text);
-        void erase(std::string_view text);
-        void changeMedium(std::string& mediumRef);
+        void appendMedium(std::string_view text);
+        void fillMedium(std::string_view text);
+        void eraseMedium(std::string_view text);
+        void reassignMedium(std::string& mediumRef);
     private:
         std::string* medium;
         Pencil& pencil;
