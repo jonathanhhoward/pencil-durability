@@ -24,9 +24,9 @@ namespace PencilDurability {
         if (isNotFound(pos))
             return;
 
-        std::string padText = isBeginMedium(pos) ? std::string{ text } : ' ' + std::string{ text };
-        std::string context = medium->substr(pos, padText.size());
-        medium->replace(pos, padText.size(), pencil->overwrite(context, padText));
+        std::string newText = padText(pos, std::string{ text });
+        std::string oldText = medium->substr(pos, newText.size());
+        medium->replace(pos, newText.size(), pencil->overwrite(oldText, newText));
     }
 
     void Writer::eraseMedium(std::string_view text)
