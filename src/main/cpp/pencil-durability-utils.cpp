@@ -20,13 +20,8 @@ namespace PencilDurability {
         return searchResult == std::string::npos;
     }
 
-    bool isBeginMedium(std::size_t searchResult)
+    std::string padText(bool isPad, const std::string& text)
     {
-        return searchResult == 0;
-    }
-
-    std::string padText(std::size_t pos, const std::string& text)
-    {
-        return isBeginMedium(pos) ? text : ' ' + text;
+        return isPad ? ' ' + text : text;
     }
 }

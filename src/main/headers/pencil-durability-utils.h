@@ -15,8 +15,7 @@ namespace PencilDurability {
     bool isSpace(char c);
     bool isUpper(char c);
     bool isNotFound(std::size_t searchResult);
-    bool isBeginMedium(std::size_t searchResult);
-    std::string padText(std::size_t pos, const std::string& text);
+    std::string padText(bool isPad, const std::string& text);
 }
 
 #endif //PENCIL_DURABILITY_UTILS_H
