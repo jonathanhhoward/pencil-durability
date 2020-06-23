@@ -5,11 +5,11 @@ The source code is written in C++17 and the tests use the [Catch2](https://githu
 
 ### Navigating the source code
 
-The test code is at `./src/test/cpp/pencil-durability-tests.cpp`
+The the test code is at `./src/test/cpp/`
 
 The Catch2 framework code is at `./src/test/headers/catch.hpp` and `./src/test/cpp/catch-main.cpp`
 
-The starting point of the kata code is at `./src/main/headers/Pencil.h`
+The starting point of the kata code is at `./src/main/headers/Writer.h`
 
 The remainder of the kata code is dispersed between `./src/main/headers/` and `./src/main/cpp/`
 
